@@ -18,12 +18,19 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'styles.css',
     }),
-    new MiniCssExtractPlugin({
-      filename: 'styles.css',
-    }),
   ],
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      },
       {
         test: /\.html$/,
         use: 'html-loader',
@@ -37,5 +44,8 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".scss"],
   },
 };
