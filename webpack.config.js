@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
@@ -36,13 +35,25 @@ module.exports = {
         use: 'html-loader',
       },
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]', // Имя файла после сборки
+              outputPath: 'images', // Папка, куда будут скопированы изображения
+            },
+          },
+        ],
+      }
     ],
   },
   resolve: {

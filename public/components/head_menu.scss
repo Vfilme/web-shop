@@ -1,0 +1,48 @@
+div.head_menu_box {
+    width: 100%;
+    background-color: green;
+    display: flex;
+    justify-content: space-between;
+    img {
+        width: 50px;
+    }
+    a {
+        text-decoration-line: none;
+        color: white;
+        outline: none;
+
+        margin: 0;
+        padding: 0;
+    }
+    ul {
+        display: inline-flex;
+        text-decoration: none;
+        list-style: none;
+        font-size: 18px;
+        background-color: grey;
+
+        margin: 0;
+        padding: 0;
+        li {
+            margin: auto;
+            a:hover {
+                border-bottom: white 2px solid;
+            }
+        }
+        &.head_menu_pages {
+            font-size: 18px;
+            a {
+                margin: 0 25px 0 0;
+            }
+        }
+        &.head_menu_sections {
+            font-size: 14px;
+            a {
+                margin: 0 0 0 15px;
+            }
+            img {
+                width: 40px;
+            }
+        }
+    }
+}
