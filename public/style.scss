@@ -1,8 +1,12 @@
 @import 'components/head_sales';
 @import 'components/head_menu.scss';
-@import 'components/menu_under.scss';
+
+// animations
+@import 'components/animations.scss';
+
 
 html, body {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }

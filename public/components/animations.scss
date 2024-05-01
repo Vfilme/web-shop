@@ -1,0 +1,13 @@
+@keyframes fadeInWord {
+    0% {
+      opacity: 0;
+      line-height: 5px;
+      color: grey;
+    }
+    100% {
+      opacity: 1;
+      line-height: 35px;
+      transform: translateY(20px);
+      color: white;
+    }
+}

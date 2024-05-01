@@ -18,8 +18,8 @@ export default function SimpleSlider() {
 
   return (
     <Slider {...settings}>
-        <p className='slider-container'>Promocode: dcshoes</p>
-        <p className='slider-container'>Super sales -50%</p>
+        <p className='slider-container'>Промокод: promocode</p>
+        <p className='slider-container'>-50% в разделе "Новинки"</p>
     </Slider>
   );
     
