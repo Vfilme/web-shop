@@ -1,60 +1,93 @@
 import React, {useRef, useEffect, useState} from 'react';
 import * as data from '../../data.js';
-
+let statusMake = true;
 export default function(props) {
+    // let JSONdata = 0;
     const boxSearch = useRef();
-    const [statusSearch, setStatusSearch] = useState(0);
     const [classCleanSearch, setClassCleanSearch] = useState('invisible');
-    const [statusCleanSearch, setStatusCleanSearch] = useState('');
-    const [classShowSearchProducts, setClassShowSearchProducts] = useState('');
-    const cM = 'men', cW = 'women', cCh = 'children';
-    const textForSearch = 'all';
-    const allText = `${textForSearch} ${cM} ${cW} ${cCh} shoes all `;
+    const [statusSearch, setStatusSearch] = useState(0);
+    const [JSONdata, setJSONdata] = useState();
+    const [resultSearch, setResultSearch] = useState();
 
+    // check jsonData and statusMake, make sv-vo keyWords to jsonData. 
+    if (props.jsonData && statusMake) {
+        statusMake=false;
+        props.jsonData.forEach((el)=>{
+        let myId = el.id;
+        el.id = "";
+        el.keyWords = Object.values(el).reduce((acum, el)=>{
+            return acum + ` ${el}`
+        }).trim().split(" ");
+
+        el.id = myId;
+    })}//now JSONdata will always with keyWords
+    
     useEffect(()=>{
-        const tablesOfSearch = document.querySelectorAll('.tablesOfSearch');
-        tablesOfSearch.forEach(elem => {
-            if (boxSearch.current.value != "" && statusCleanSearch!='clean')  {
-                if (elem.innerText.search(new RegExp(boxSearch.current.value, 'ig')) == (-1)) {
-                    elem.classList.remove('show');
-                }else {
-                    setClassCleanSearch('');
-                    elem.classList.add('show');
-                    setClassShowSearchProducts('showSearchProducts');
+        setJSONdata(props.jsonData ? props.jsonData : false);// check jsonData and set  with keyWords  
+
+        let myKeyWord = boxSearch.current.value.trim().replace(/\s+/g, " ").split(" ");// make user's keyWords
+
+        if (JSONdata) {// check JSONdata  && myKeyWord.length!=0 && myKeyWord[0]!=""
+
+            //clean JSONdata 
+            for (let i=0; i<JSONdata.length; i++) {
+                for (let j=0; j<JSONdata[i].keyWords.length; j++) {
+                    JSONdata[i].stat = 0;
                 }
-            } else {
-                elem.classList.remove('show');
-                setClassCleanSearch('invisible');
             }
-        });
-        setStatusCleanSearch('');
-    }, [statusSearch]);
 
-    const makeSearch = ()=>{
+            // making and counting stat
+            if (props.statusResultSearchProduct == true){
+                for (let i=0; i<JSONdata.length; i++) {
+                    for (let j=0; j<JSONdata[i].keyWords.length; j++) {
+                        for (let l=0; l<myKeyWord.length; l++) {
+                            if ( JSONdata[i].keyWords[j].search(new RegExp(myKeyWord[l], "i"))!=-1 && props.statusResultSearchProduct) {
+                                JSONdata[i].stat ??= 0;
+                                JSONdata[i].stat++;
+                                if (myKeyWord[l]=="" && JSONdata[i].id > 2) {
+                                    JSONdata[i].stat = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // console.log(myKeyWord);
+
+            setResultSearch(JSONdata.filter((el)=>{ //set resultSearch which match with user's keyWords
+                return el.stat > 0;
+            }));
+            // console.log(myKeyWord);
+        }
+    }, [statusSearch, props.jsonData, props.statusResultSearchProduct]);
+
+    const makeSearch = ()=> {
         setStatusSearch(statusSearch+1);
+        props.setStatusSearchProduct();
     }
-
     return (
         <div className={`wrapperSearch ${props.statusSearch}`} >  
             <form>
                 <img src={props.searchSrc} alt="" />
-                <input type="text"  onInput={()=>makeSearch()} ref={boxSearch} placeholder="Искать..." />
-                <p className={classCleanSearch} onClick={()=>{setStatusCleanSearch('clean'); makeSearch();boxSearch.current.value = '';setClassShowSearchProducts('');}}>Отчистить</p>
+                <input type="text" onInput={()=>makeSearch()} ref={boxSearch} placeholder="Искать..." />
+                <p className={classCleanSearch} onClick={()=>{setClassCleanSearch('clean'); makeSearch();boxSearch.current.value = ''}}>Отчистить</p>
                 <img src={props.krestSrc} onClick={props.lowClick} alt="" />
-            </form>
-            <div className={`boxSearchProducts ${classShowSearchProducts}`}>
-                <ul className='searchCategories'>
-                    <li><a href="" className={`tablesOfSearch`}><span style={{}}>Categories</span><span style={{'visibility': 'none'}}>`${data.keyWords.allCategories}`</span></a></li>
-                    <li><a href="" className={`tablesOfSearch`}>All shoest</a></li>
-                    <li><a href="" className={`tablesOfSearch`}>Man's shoes</a></li>
-                    <li><a href="" className={`tablesOfSearch`}>Woman's shoes</a></li>
-                    <li><a href="" className={`tablesOfSearch`}>Children's shoes</a></li>
-                </ul>
-                <ul className='searchProducts'>
-                    <li><a className={`tablesOfSearch`}><img src="https://www.dcshoes.com/cdn/shop/files/300529_dcshoes_103_frt2.jpg?v=1712674242&width=1117" alt="" />red shoes <span>{`${textForSearch} ${cM}`}</span></a></li>
-                    <li><a className={`tablesOfSearch`}><img src="https://www.dcshoes.com/cdn/shop/files/1117x1173_XWKR_65.jpg?v=1711395059" alt="" />black shoes<span>{`${textForSearch} ${cW}`}</span></a></li>   
-                    <li><a className={`tablesOfSearch`}><img src="https://www.dcshoes.com/cdn/shop/files/1117x1173_XWKR_65.jpg?v=1711395059" alt="" />black shoes<span>{`${textForSearch} ${cCh}`}</span></a></li>        
-                </ul>
+             </form> {/* boxSearchProducts searchCategories searchProducts */}
+            <div className='boxSearchProducts'>
+                {resultSearch ? 
+                resultSearch.map(el=>{
+                    return (
+                        <figure key={el.id}>
+                            <img src={`images/products/${el.src}`} alt="" />
+                            <figcaption>
+                                <p>This id {el.id}</p>
+                                <p>This keyWords {el.keyWords} the end</p>
+                            </figcaption>
+                        </figure>
+                    )
+                })
+                : false}
             </div>
         </div>
     )

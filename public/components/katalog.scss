@@ -55,55 +55,13 @@ div.wrapperSearch {
     }
     
     .boxSearchProducts {
-        background-color: black;
-        color: green;
-        gap: 20px;
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-        height: 0;
-        
-        &.showSearchProducts {
-            height: auto;
-        }
-        ul {
-            list-style-type: none;
-            &.searchCategories {
-                a {
-                    display: none;
-                    &.show {
-                        display: block;
-                    }
-                }
+        background-color: red;
+
+        figure {
+            background-color: black;
+            img {
+                width: 200px;
             }
-            &.searchProducts {
-                display: inline-flex;
-                li {            
-                    display: flex;
-                    display: block;
-                    margin: auto;
-                }
-                a.tablesOfSearch {
-                    border: 1px black dashed;
-                    display: none; 
-                    width: 180px;
-                    text-align: center;
-                    &.show {
-                        display: block;
-                    }
-                    span {
-                        display: none;
-                    }
-                    img {
-                        display: flex;
-                        margin: 0 auto;
-                        width: 100%;
-                    }
-                }
-            }
-        }
-        ul.searchProducts {
-            color: red;
         }
     }
 }
