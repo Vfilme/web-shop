@@ -53,11 +53,26 @@ div.wrapperSearch {
             }
         }
     }
-    
+    display: grid; 
+    // justify-items: center;
+    justify-content: center;
     .boxSearchProducts {
+        // justify-content: center;
+        place-items: none;
+        max-width: 1400px;
         background-color: red;
-
+        grid-template-columns: 200px repeat(4, 1fr);
+        display: inline-grid;
+        ul:first-child {
+            list-style: none;
+            display: grid;
+            width: 200px;
+            background-color: green;
+            box-sizing: border-box;
+            align-self: start;
+        }
         figure {
+            display: grid;
             background-color: black;
             img {
                 width: 200px;
@@ -65,5 +80,7 @@ div.wrapperSearch {
         }
     }
 }
-
+body > .wrapperSearch {
+    place-items: center;
+}
 

@@ -1,29 +1,32 @@
 import React, {useRef, useEffect, useState} from 'react';
-import * as data from '../../data.js';
+
 let statusMake = true;
 export default function(props) {
-    // let JSONdata = 0;
     const boxSearch = useRef();
     const [classCleanSearch, setClassCleanSearch] = useState('invisible');
     const [statusSearch, setStatusSearch] = useState(0);
     const [JSONdata, setJSONdata] = useState();
+    // const [collections, setCollections] = useState();
     const [resultSearch, setResultSearch] = useState();
 
     // check jsonData and statusMake, make sv-vo keyWords to jsonData. 
     if (props.jsonData && statusMake) {
         statusMake=false;
         props.jsonData.forEach((el)=>{
-        let myId = el.id;
-        el.id = "";
+        let myId = el.id, mySrc = el.src;
+        
+        el.id = ""; el.src = "";
         el.keyWords = Object.values(el).reduce((acum, el)=>{
             return acum + ` ${el}`
         }).trim().split(" ");
 
-        el.id = myId;
+        el.id = myId; el.src = mySrc;
     })}//now JSONdata will always with keyWords
     
     useEffect(()=>{
+        // props.jsonData2 ? setCollections([...Object.values(props.jsonData2)[0], ...Object.values(props.jsonData2)[1]]) : false;
         setJSONdata(props.jsonData ? props.jsonData : false);// check jsonData and set  with keyWords  
+        // props.jsonData2 ? console.log(props.jsonData2) : false;
 
         let myKeyWord = boxSearch.current.value.trim().replace(/\s+/g, " ").split(" ");// make user's keyWords
 
@@ -52,13 +55,14 @@ export default function(props) {
                     }
                 }
             }
-            
-            // console.log(myKeyWord);
-
             setResultSearch(JSONdata.filter((el)=>{ //set resultSearch which match with user's keyWords
                 return el.stat > 0;
             }));
-            // console.log(myKeyWord);
+            // props.jsonData2 ? setCollections(props.jsonData2.filter(el=>{
+            //     return el.search(new RegExp(myKeyWord,"i"))!=-1;
+            // })) 
+            // : console.log("not now");
+            // collections ? console.log(collections) : false;
         }
     }, [statusSearch, props.jsonData, props.statusResultSearchProduct]);
 
@@ -76,17 +80,30 @@ export default function(props) {
              </form> {/* boxSearchProducts searchCategories searchProducts */}
             <div className='boxSearchProducts'>
                 {resultSearch ? 
-                resultSearch.map(el=>{
-                    return (
-                        <figure key={el.id}>
-                            <img src={`images/products/${el.src}`} alt="" />
-                            <figcaption>
-                                <p>This id {el.id}</p>
-                                <p>This keyWords {el.keyWords} the end</p>
-                            </figcaption>
-                        </figure>
-                    )
-                })
+                <>
+                    <ul>
+                        {/* {
+                            collections ? collections.map(el=>{
+                                return (
+                                    <li>{el}</li>
+                                )
+                            })
+                            : ""
+                        } */}
+                    </ul>
+                    {resultSearch.slice(0,4).map(el=>{//.slice(0,3) after resultSearch
+                        return (
+                            <figure key={el.id}>
+                                <img src={`images/${el.src}`} alt="" />
+                                <figcaption>
+                                    <p>{el.title}</p>
+                                    <p>{`costs $${el.costs}`}</p>
+                                    <p>{`for ${el.categories}`}</p>
+                                </figcaption>
+                            </figure>
+                        )
+                    })}
+                </>
                 : false}
             </div>
         </div>
