@@ -6,8 +6,9 @@ export default function(props) {
     const [classCleanSearch, setClassCleanSearch] = useState('invisible');
     const [statusSearch, setStatusSearch] = useState(0);
     const [JSONdata, setJSONdata] = useState();
-    // const [collections, setCollections] = useState();
+    const [collections, setCollections] = useState();
     const [resultSearch, setResultSearch] = useState();
+    const [totalStatusSearch, setTotalStatusSearch] = useState(null);
 
     // check jsonData and statusMake, make sv-vo keyWords to jsonData. 
     if (props.jsonData && statusMake) {
@@ -24,11 +25,17 @@ export default function(props) {
     })}//now JSONdata will always with keyWords
     
     useEffect(()=>{
-        // props.jsonData2 ? setCollections([...Object.values(props.jsonData2)[0], ...Object.values(props.jsonData2)[1]]) : false;
         setJSONdata(props.jsonData ? props.jsonData : false);// check jsonData and set  with keyWords  
-        // props.jsonData2 ? console.log(props.jsonData2) : false;
+       
 
         let myKeyWord = boxSearch.current.value.trim().replace(/\s+/g, " ").split(" ");// make user's keyWords
+        
+        if (boxSearch.current.value && boxSearch.current.value != "") {
+            setClassCleanSearch("clean");
+        } else {
+            setClassCleanSearch("invisible");
+        }
+        
 
         if (JSONdata) {// check JSONdata  && myKeyWord.length!=0 && myKeyWord[0]!=""
 
@@ -37,16 +44,35 @@ export default function(props) {
                 for (let j=0; j<JSONdata[i].keyWords.length; j++) {
                     JSONdata[i].stat = 0;
                 }
+                setTotalStatusSearch("");
             }
+            setCollections(false);
 
             // making and counting stat
-            if (props.statusResultSearchProduct == true){
+            if (props.statusResultSearchProduct){
+                if (myKeyWord!="") {
+                    let isEmpty = false;
+                        setCollections(props.jsonData2 ? props.jsonData2.filter(el=>{
+
+                            let result = el.search(new RegExp(myKeyWord.join(" "), "i"))!=-1 && myKeyWord.join("")!="";
+                            if (result) {isEmpty=true};
+                            return result;
+                        }) 
+                        : false);
+                        setTotalStatusSearch(isEmpty ? "show" : "");
+                    } else {
+                        setCollections(false);
+                    }
+
+
                 for (let i=0; i<JSONdata.length; i++) {
                     for (let j=0; j<JSONdata[i].keyWords.length; j++) {
                         for (let l=0; l<myKeyWord.length; l++) {
                             if ( JSONdata[i].keyWords[j].search(new RegExp(myKeyWord[l], "i"))!=-1 && props.statusResultSearchProduct) {
                                 JSONdata[i].stat ??= 0;
                                 JSONdata[i].stat++;
+
+                                setTotalStatusSearch("show");
                                 if (myKeyWord[l]=="" && JSONdata[i].id > 2) {
                                     JSONdata[i].stat = 0;
                                 }
@@ -57,12 +83,11 @@ export default function(props) {
             }
             setResultSearch(JSONdata.filter((el)=>{ //set resultSearch which match with user's keyWords
                 return el.stat > 0;
-            }));
-            // props.jsonData2 ? setCollections(props.jsonData2.filter(el=>{
-            //     return el.search(new RegExp(myKeyWord,"i"))!=-1;
-            // })) 
-            // : console.log("not now");
-            // collections ? console.log(collections) : false;
+            }).sort((elF, elS)=>{return elS.stat-elF.stat}));
+            // console.log(resultSearch.sort((elF, elS)=>{
+            //     return elF.stat - elS.stat
+            // }));
+            // console.log(resultSearch)
         }
     }, [statusSearch, props.jsonData, props.statusResultSearchProduct]);
 
@@ -75,21 +100,27 @@ export default function(props) {
             <form>
                 <img src={props.searchSrc} alt="" />
                 <input type="text" onInput={()=>makeSearch()} ref={boxSearch} placeholder="Искать..." />
-                <p className={classCleanSearch} onClick={()=>{setClassCleanSearch('clean'); makeSearch();boxSearch.current.value = ''}}>Отчистить</p>
+                <p className={classCleanSearch} onClick={()=>{setClassCleanSearch('invisible'); setResultSearch(false); boxSearch.current.value = ''; setTotalStatusSearch("");}}>Отчистить</p>
                 <img src={props.krestSrc} onClick={props.lowClick} alt="" />
-             </form> {/* boxSearchProducts searchCategories searchProducts */}
+             </form>
             <div className='boxSearchProducts'>
                 {resultSearch ? 
                 <>
                     <ul>
-                        {/* {
+                        {
+                            collections && collections.length > 0 ? collections.reduce((s, e)=>{
+                                return s + e ? 1 : 0
+                            },0) > 0 ? <li>{"Collections"}</li> : false
+                            : false
+                        }
+                        {
                             collections ? collections.map(el=>{
                                 return (
                                     <li>{el}</li>
                                 )
                             })
                             : ""
-                        } */}
+                        }
                     </ul>
                     {resultSearch.slice(0,4).map(el=>{//.slice(0,3) after resultSearch
                         return (
@@ -106,6 +137,7 @@ export default function(props) {
                 </>
                 : false}
             </div>
+            <div className={`bottomLine ${totalStatusSearch}`}></div>
         </div>
     )
 }

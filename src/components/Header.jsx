@@ -32,15 +32,13 @@ const getJSONdata = async (src, setData) => {
 
 
 export default function() {
-    const [classStatusSearch, setClassStatusSearch] = useState('showSearch');//"" ---!
-    const [JSONdataFromServer, setJSONdataFromServer] = useState([1,2]);
-    const [JSONdataFromServer2, setJSONdataFromServer2] = useState([2,3]);
+    const [classStatusSearch, setClassStatusSearch] = useState('');//"" ---!
+    const [JSONdataFromServer, setJSONdataFromServer] = useState();
+    const [JSONdataFromServer2, setJSONdataFromServer2] = useState();
     const [ResultSearchProduct, setResultSearchProduct] = useState(false);
     useEffect(() => {
         getJSONdata("https://raw.githubusercontent.com/Vfilme/dataCards/main/products.json", setJSONdataFromServer);
         getJSONdata("https://raw.githubusercontent.com/Vfilme/dataCards/main/collection.json", setJSONdataFromServer2);
-
-
     }, []);
     return (
         <>
@@ -50,11 +48,12 @@ export default function() {
             userSrc={user}
             searchSrc={search}
             basketSrc={basket} 
-             downClick={event=>{event.preventDefault();setClassStatusSearch('showSearch')} } />
+            downClick={event=>{event.preventDefault();setClassStatusSearch('showSearch')} } />
             <Katalog 
             jsonData={JSONdataFromServer}
-            // jsonData2={[...Object.values(JSONdataFromServer2)[0]]}
-            jsonData2={JSONdataFromServer}
+
+            jsonData2={JSONdataFromServer2 ? [ ...Object.values(JSONdataFromServer2)[0], ...Object.values(JSONdataFromServer2)[1] ] : ""}
+            // jsonData2={JSONdataFromServer2}
             krestSrc={krest}
             searchSrc={search} 
             statusResultSearchProduct={ResultSearchProduct}
