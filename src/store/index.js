@@ -1,10 +1,14 @@
-import {createStore, combineReducers} from 'redux';
-import { cashReducer } from './cashReducer';
-import { customerReducer } from './customerReducer';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
+import { countWatcher } from '../actions/countSaga';
+import { countReducer } from './countReducer';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-    cash: cashReducer,
-    customer: customerReducer
+    countReducer
 });
-export const store = createStore(rootReducer, composeWithDevTools());
+export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(countWatcher);
