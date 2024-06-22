@@ -1,0 +1,12 @@
+@import '@scss/const';
+
+
+div.totalBox {//218
+    border: 1px map-get($map: $colors, $key: easy-grey) solid;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: map-get($map: $borders, $key: border-radius);
+    button {
+        margin-right: 20px;
+    }
+}

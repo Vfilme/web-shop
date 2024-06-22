@@ -1,0 +1,43 @@
+@import "@scss/const";
+
+div.catalog {
+    margin: 20px auto;
+    max-width: 1200px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+div.bodyCatalog {
+    > button {
+        display: block;
+        margin: 40px auto;
+    }
+}
+
+div.pagination {
+    width: 200px;
+    margin: 40px auto;
+    font-size: 1em;
+    // background-color: grey;
+    display: flex;
+    justify-content: space-around;
+    user-select: none;
+    cursor: pointer;
+    span {
+        display: inline-flex;
+        border: 1px map-get($map: $colors, $key: easy-grey) solid;
+        border-radius: map-get($map: $borders, $key: border-radius);
+        padding: 10px;
+        margin: 0 5px;
+    }
+    // span:nth-child(2) {
+    //     background-color: map-get($map: $colors, $key: easy-grey);
+    // }
+    span.actualPage {
+        background-color: map-get($map: $colors, $key: easy-grey);
+    }
+    span.outSideGroup {
+        display: none;
+    }
+}

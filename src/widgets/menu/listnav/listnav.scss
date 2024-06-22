@@ -1,0 +1,30 @@
+ul.listNav {
+    user-select: none;
+    color: white;
+    font-family: sans-serif;
+    font-size: 18px;
+    margin: auto 0;
+    padding: 0;
+    list-style: none;
+    li {
+        display: inline-block;
+        margin: 0 5px;
+        ul {
+            display: none;
+            padding: 0;
+            background-color: blueviolet;
+            position: absolute;
+            li {
+                display: block;
+                margin: 10px 10px;
+            }
+        }
+    }
+    a {
+        text-decoration: none;
+        color:  white;
+    }
+    li:hover ul {
+        display: block;
+    } 
+}

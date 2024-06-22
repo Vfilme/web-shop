@@ -1,0 +1,20 @@
+@import "@scss/const";
+
+div.cards {
+    border: 1px solid map-get($map: $colors, $key: easy-grey);
+    border-radius: map-get($map: $borders, $key: border-radius);
+    font-family: sans-serif;
+    padding: 20px;
+    img {
+        width: 200px;
+        height: 250px;
+    }
+    div {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 100px auto;
+        button {
+            width: min-content;
+        }
+    }
+}

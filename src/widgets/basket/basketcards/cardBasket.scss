@@ -1,0 +1,12 @@
+@import "@scss/const";
+
+div.cardBasket {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid map-get($map: $colors, $key: easy-grey);
+    border-radius: map-get($map: $borders, $key: border-radius);
+    img {
+        width: 200px;
+        height: 200px;
+    }
+}
