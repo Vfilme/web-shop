@@ -1,10 +1,5 @@
-import React from "react";
-import Menu from '../features/header/menu/Menu';
+import React from 'react';
 
-export const MainPage: React.FC = ()=> {
-    return (
-        <>
-            
-        </>
-    )
-}
+export const MainPage: React.FC = () => {
+    return <></>;
+};

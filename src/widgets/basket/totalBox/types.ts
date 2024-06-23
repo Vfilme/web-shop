@@ -1,3 +1,3 @@
 export interface IProps {
-    fun: ()=>void
+    fun: () => void;
 }

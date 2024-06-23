@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-export const SearchPage: React.FC = ()=> {
+export const SearchPage: React.FC = () => {
     return (
         <div>
             <h1>Some text search page</h1>
         </div>
-    )
-}
+    );
+};

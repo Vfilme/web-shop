@@ -1,11 +1,11 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { UserPage } from "../pages/UserPage";
-import { BasketPage } from "../pages/basket/BasketPage";
-import { SearchPage } from "../pages/SearchPage";
-import { CatalogPage } from "../pages/CatalogPage";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { UserPage } from '../pages/UserPage';
+import { BasketPage } from '../pages/basket/BasketPage';
+import { SearchPage } from '../pages/SearchPage';
+import { CatalogPage } from '../pages/CatalogPage';
 
-export const AppRouter: React.FC = ()=> {
+export const AppRouter: React.FC = () => {
     return (
         <Routes>
             <Route path="/user" Component={UserPage}></Route>
@@ -13,5 +13,5 @@ export const AppRouter: React.FC = ()=> {
             <Route path="/basket" Component={BasketPage}></Route>
             <Route path="/" Component={CatalogPage}></Route>
         </Routes>
-    )
-}
+    );
+};

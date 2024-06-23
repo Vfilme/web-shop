@@ -1,3 +1,3 @@
-import { rootReducer } from ".."
+import { rootReducer } from '..';
 
-export type TRootReducer = ReturnType<typeof rootReducer>
+export type TRootReducer = ReturnType<typeof rootReducer>;

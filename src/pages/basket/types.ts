@@ -1,5 +1,5 @@
-import { IProducts } from "../../app/store/basket/types";
+import { IProducts } from '../../app/store/basket/types';
 
 export interface IProductsBasket extends IProducts {
-    count: number
+    count: number;
 }

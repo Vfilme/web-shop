@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Menu from '../../features/header/menu/Menu';
 
 export const Navigation: React.FC = () => {
@@ -6,5 +6,5 @@ export const Navigation: React.FC = () => {
         <>
             <Menu />
         </>
-    )
-}
+    );
+};

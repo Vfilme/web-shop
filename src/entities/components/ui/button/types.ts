@@ -1,13 +1,13 @@
 export interface IBasket {
-    id: number
-    title: string,
-    category: string,
-    price: number,
-    description?: string,
-    image: string,
+    id: number;
+    title: string;
+    category: string;
+    price: number;
+    description?: string;
+    image: string;
     rating: {
-        rate: number,
-        count: number
-    },
-    count?: number,
+        rate: number;
+        count: number;
+    };
+    count?: number;
 }
