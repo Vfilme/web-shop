@@ -1,3 +1,3 @@
-import { rootReducer } from '..';
+import { store } from '..';
 
-export type TRootReducer = ReturnType<typeof rootReducer>;
+export type TRootReducer = ReturnType<typeof store.getState>;

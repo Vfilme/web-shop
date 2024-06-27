@@ -1,15 +1,13 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { basketReducer } from './basket/basketReducer';
-import { thunk } from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { presenceReducer } from './api/presenceReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import presenceSlice from './api/presenceSlice';
+import basketSlice from './basket/basketSlice';
 
-export const rootReducer: any = combineReducers({
-    basket: basketReducer,
-    presence: presenceReducer,
+export const store = configureStore({
+    reducer: {
+        basket: basketSlice,
+        presence: presenceSlice,
+    },
 });
 
-export const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk)),
-);
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

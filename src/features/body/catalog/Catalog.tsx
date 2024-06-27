@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
 import './catalog';
 import { Cards } from '../../../widgets/cards/Cards';
@@ -9,7 +10,7 @@ import { createMassiveFromNumber } from '../../../shared/scripts/arrays/arrays';
 import {
     REPEAT_LOAD,
     UPDATE_NUMBER_PAGE,
-} from '../../../app/store/basket/basketReducer';
+} from '../../../app/store/basket/basketSlice';
 import { PRODUCTS } from '../../../entities/const/const';
 
 export const Catalog: React.FC = () => {
