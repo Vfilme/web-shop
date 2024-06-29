@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
 import './basketpage.scss';
 import { TotalBox } from '../../widgets/basket/totalBox/TotalBox';
