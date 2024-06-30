@@ -9,6 +9,7 @@ import {
     setSSData,
 } from '../../../entities/components/helperScripts';
 import { ButtonLoadMore } from '../../../widgets/catalog/buttonLoadMore/ButtonLoadMore';
+import { SideBar } from '../../../widgets/catalog/sidebar/SideBar';
 
 export const Catalog: React.FC = () => {
     if (!sessionStorage.getItem('pageNumber')) setSSData('pageNumber', 1);
@@ -21,7 +22,12 @@ export const Catalog: React.FC = () => {
     return (
         <div className="catalog">
             <div className="wrapperCards">
-                <Cards />
+                <div className="sideBarWrapper">
+                    <SideBar />
+                </div>
+                <div className="content">
+                    <Cards />
+                </div>
             </div>
             {conditionButtonLoadMore && (
                 <ButtonLoadMore

@@ -5,5 +5,5 @@ export enum BIZ_CONST {
 
 export enum PRODUCTS {
     URL = 'http://localhost:3000/api/products',
-    PAGE_SIZE = 4,
+    PAGE_SIZE = 8,
 }

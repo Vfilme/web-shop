@@ -1,9 +1,23 @@
 @import '@scss/const';
 
+// div.catalog {
+//     display: grid;
+//     grid-template-columns: 300px 1500px;
+
+//     margin: auto;
+//     justify-content: space-around;
+// }
+
 div.wrapperCards {
     margin: 20px auto;
-    max-width: 1200px;
+    padding: 0 20px;
+    max-width: 1500px;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 2fr 9fr;
+    .content {
+        gap: inherit;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
