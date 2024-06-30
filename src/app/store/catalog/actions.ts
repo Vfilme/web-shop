@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { PRODUCTS } from '../../../entities/const/const';
-import { ADD_DATA, GET_DATA } from './basketSlice';
+import { ADD_DATA, GET_DATA } from './catalogSlice';
 
 export const getProducts = async (numberPage: number) => {
     try {

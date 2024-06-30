@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import presenceSlice from './api/presenceSlice';
-import basketSlice from './basket/basketSlice';
+import catalogReducer from './catalog/catalogSlice';
+import basketReducer from './basket/basketSlice';
 
 export const store = configureStore({
     reducer: {
-        basket: basketSlice,
+        catalog: catalogReducer,
         presence: presenceSlice,
+        basket: basketReducer,
     },
 });
 

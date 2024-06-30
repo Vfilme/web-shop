@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './usernav.scss';
+import { CountProductsBasket } from './countProductsBasket/CountProductsBasket';
 
 export const UserNav: React.FC = () => {
     return (
@@ -19,6 +20,7 @@ export const UserNav: React.FC = () => {
                 <li>
                     <Link to="/basket">
                         <img src="./images/basket.png" alt="корзина" />
+                        <CountProductsBasket />
                     </Link>
                 </li>
             </ul>

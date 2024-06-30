@@ -1,0 +1,19 @@
+div.wrapperTotalCount {
+    font-size: 0.9em;
+    text-align: center;
+    color: white;
+    float: right;
+    position: absolute;
+    transform: translate(22px, -40px);
+    background-color: orange;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    padding: 3px;
+    &.fullBasket {
+        display: block;
+    }
+    &.emptyBasket {
+        display: none;
+    }
+}

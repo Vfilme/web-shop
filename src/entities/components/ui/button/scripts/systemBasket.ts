@@ -1,31 +1,22 @@
 import { remElArId } from '../../../../../shared/scripts/arrays/arrays';
+import { getLSData, setLSData } from '../../../helperScripts';
 import { IBasket } from '../types';
 
-export const addProdBasket: (product: IBasket) => void = (product) => {
-    if (localStorage.getItem('basket')) {
-        const LSproducts: string = localStorage.getItem('basket') as string;
-        const productsJS = JSON.parse(LSproducts);
+export const addProductSystem: (product: IBasket) => void = (product) => {
+    if (getLSData('basket')) {
+        const productsJS = getLSData('basket') as Array<any>;
         for (const e of productsJS) {
             if (product.id == e.id) {
                 const newE = { ...e };
                 newE.count++;
-                localStorage.setItem(
-                    'basket',
-                    JSON.stringify([...remElArId(productsJS, e.id), newE])
-                );
+                setLSData('basket', [...remElArId(productsJS, e.id), newE]);
                 break;
             } else {
-                localStorage.setItem(
-                    'basket',
-                    JSON.stringify([...productsJS, { ...product, count: 1 }])
-                );
+                setLSData('basket', [...productsJS, { ...product, count: 1 }]);
             }
         }
     } else {
-        localStorage.setItem(
-            'basket',
-            JSON.stringify([{ ...product, count: 1 }])
-        );
+        setLSData('basket', [{ ...product, count: 1 }]);
     }
 };
 

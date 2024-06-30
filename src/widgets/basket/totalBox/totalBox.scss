@@ -1,7 +1,6 @@
 @import '@scss/const';
 
-
-div.totalBox {//218
+div.totalBox {
     border: 1px map-get($map: $colors, $key: easy-grey) solid;
     margin: 20px 0;
     padding: 20px;

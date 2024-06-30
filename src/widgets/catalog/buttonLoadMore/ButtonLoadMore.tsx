@@ -3,7 +3,7 @@ import { Button } from '../../../shared/ui/button/Button';
 import { useDispatch } from 'react-redux';
 import { setSSData } from '../../../entities/components/helperScripts';
 import { IProps } from './types';
-import { addData } from '../../../app/store/basket/actions';
+import { addData } from '../../../app/store/catalog/actions';
 import './buttonLoadMore.scss';
 
 export const ButtonLoadMore: React.FC<IProps> = ({ fun, numberActualPage }) => {

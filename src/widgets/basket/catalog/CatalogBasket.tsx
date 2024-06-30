@@ -1,7 +1,7 @@
 import './catalogBasket';
 import React from 'react';
 import { CardBasket } from '../basketcards/CardBasket';
-import { IProducts } from '../../../app/store/basket/types';
+import { IProducts } from '../../../app/store/catalog/types';
 
 interface IProps {
     products: Array<IProducts>;

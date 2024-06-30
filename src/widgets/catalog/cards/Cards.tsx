@@ -4,18 +4,18 @@ import './cards';
 import { cutSentence } from './module';
 import { useTypedSelector } from '../../../app/store/hooks/hooks';
 import { getSSData } from '../../../entities/components/helperScripts';
-import { IProducts } from '../../../app/store/basket/types';
-import { getData } from '../../../app/store/basket/actions';
+import { IProducts } from '../../../app/store/catalog/types';
+import { getData } from '../../../app/store/catalog/actions';
 import { ButtonAddProd } from '../../../entities/components/ui/button/ButtonAddProd';
 import { BIZ_CONST } from '../../../entities/const/const';
 
 export const Cards: React.FC = () => {
     const pageNumber: number = useTypedSelector(
-        (state) => state.basket.pageNumber,
+        (state) => state.catalog.pageNumber,
     );
     const actualPageNumber = getSSData('pageNumber');
-    const products = useTypedSelector((state) => state.basket.products);
-    const repeatLoad = useTypedSelector((state) => state.basket.repeatLoad);
+    const products = useTypedSelector((state) => state.catalog.products);
+    const repeatLoad = useTypedSelector((state) => state.catalog.repeatLoad);
 
     const dispatch = useDispatch();
     useEffect(() => {

@@ -9,13 +9,13 @@ import { useDispatch } from 'react-redux';
 import {
     REPEAT_LOAD,
     UPDATE_NUMBER_PAGE,
-} from '../../../app/store/basket/basketSlice';
+} from '../../../app/store/catalog/catalogSlice';
 import { getClassNamePagination } from './module';
 import { IProps } from './types';
 
 export const Pagination: React.FC<IProps> = ({ numberActualPage, fun }) => {
     const dispatch = useDispatch();
-    const pageNumber = useTypedSelector((state) => state.basket.pageNumber);
+    const pageNumber = useTypedSelector((state) => state.catalog.pageNumber);
 
     const pageSize = PRODUCTS.PAGE_SIZE;
     const countPages = Math.ceil(20 / pageSize);

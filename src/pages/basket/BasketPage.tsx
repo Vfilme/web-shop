@@ -4,7 +4,7 @@ import './basketpage.scss';
 import { TotalBox } from '../../widgets/basket/totalBox/TotalBox';
 import { getLSData } from './modul';
 import { CatalogBasket } from '../../widgets/basket/catalog/CatalogBasket';
-import { IProducts } from '../../app/store/basket/types';
+import { IProducts } from '../../app/store/catalog/types';
 
 export const BasketPage: React.FC = () => {
     const [update, setUpdate] = useState<boolean>(false);
