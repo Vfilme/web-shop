@@ -1,0 +1,15 @@
+@import '@scss/const';
+
+div.sideBar {
+    border: 1px map-get($map: $colors, $key: easy-grey) solid;
+    border-radius: map-get($map: $borders, $key: border-radius);
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+    div.deleteParams {
+        margin: 10px 0;
+        color: grey;
+        user-select: none;
+        cursor: pointer;
+    }
+}

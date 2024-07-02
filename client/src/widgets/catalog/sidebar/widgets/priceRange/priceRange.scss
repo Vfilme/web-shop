@@ -1,0 +1,32 @@
+@import '@scss/const';
+
+div.priceRange {
+    div {
+        span {
+            margin-left: 5px;
+        }
+        display: inline-flex;
+        gap: 5px;
+
+        padding: 0;
+        align-items: center;
+
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type='number'] {
+            all: unset;
+            text-align: center;
+            padding: 8px;
+            display: inline-block;
+            width: 80px;
+            border: 1px map-get($map: $colors, $key: easy-grey) solid;
+            border-radius: map-get($map: $borders, $key: border-radius);
+
+            &:focus {
+                border: 1px black solid;
+            }
+        }
+    }
+}
