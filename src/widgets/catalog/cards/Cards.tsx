@@ -5,7 +5,7 @@ import { cutSentence } from './module';
 import { useTypedSelector } from '../../../app/store/hooks/hooks';
 import { getSSData } from '../../../entities/components/helperScripts';
 import { IProducts } from '../../../app/store/catalog/types';
-import { getData } from '../../../app/store/catalog/actions';
+import { GET_URL_PAGE_SIZE, getData } from '../../../app/store/catalog/actions';
 import { ButtonAddProd } from '../../../entities/components/ui/button/ButtonAddProd';
 import { BIZ_CONST } from '../../../entities/const/const';
 
@@ -19,7 +19,12 @@ export const Cards: React.FC = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getData(actualPageNumber));
+        dispatch(
+            getData(
+                actualPageNumber,
+                GET_URL_PAGE_SIZE(actualPageNumber as number),
+            ),
+        );
     }, [pageNumber, repeatLoad]);
 
     return (products as Array<IProducts>).map((el) => {
@@ -29,7 +34,8 @@ export const Cards: React.FC = () => {
                 <div>
                     <h2>{cutSentence(el.title, 8, 40)}</h2>
                     <h4>{el.category}</h4>
-                    <p>{(el.price * BIZ_CONST.DOLLAR_RATE).toFixed(2)} руб.</p>
+                    <p>${el.price.toFixed(2)}</p>
+                    {/*BIZ_CONST.DOLLAR_RATE*/}
                     <ButtonAddProd {...el} />
                 </div>
             </div>
