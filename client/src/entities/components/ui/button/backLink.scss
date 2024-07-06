@@ -1,0 +1,11 @@
+button.backLink {
+    all: unset;
+    color: grey;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.1em;
+    &:hover {
+        color: black;
+    }
+}

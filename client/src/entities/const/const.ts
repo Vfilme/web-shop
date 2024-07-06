@@ -10,6 +10,7 @@ export enum PRODUCTS {
 
 export enum URLS {
     URL_SERVER = 'http://localhost:4000/',
+    URL_PRODUCT = 'product/',
     URL_PRODUCTS = 'products/',
     URL_PRODUCTS_PRICE_RANGE = 'products/priceRange/',
     URL_PRODUCTS_CATEGORIES = 'products/categories/',

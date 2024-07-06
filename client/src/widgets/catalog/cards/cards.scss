@@ -6,15 +6,12 @@ div.cards {
     font-family: sans-serif;
     padding: 20px;
     img {
-        width: 200px;
+        max-width: 200px;
         height: 250px;
     }
-    div {
+    > div {
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: 100px auto;
-        button {
-            width: min-content;
-        }
     }
 }

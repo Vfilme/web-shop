@@ -5,9 +5,9 @@ import { cutSentence } from './module';
 import { useTypedSelector } from '../../../app/store/hooks/hooks';
 import { getSSData } from '../../../entities/components/helperScripts';
 import { IProducts } from '../../../app/store/catalog/types';
-import { ButtonAddProd } from '../../../entities/components/ui/button/ButtonAddProd';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { getData } from '../../../app/store/catalog/actions';
+import { Buttons } from './buttons/Buttons';
 
 export const Cards: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -35,13 +35,14 @@ export const Cards: React.FC = () => {
         (products as Array<IProducts>).map((el) => {
             return (
                 <div className="cards" key={el.id}>
-                    <img src={el.image} alt={el.title} />
+                    <Link to={`/product/${el.id}`}>
+                        <img src={el.image} alt={el.title} />
+                    </Link>
                     <div>
-                        <h2>{cutSentence(el.title, 8, 40)}</h2>
+                        <h2>{cutSentence(el.title, 5, 40)}</h2>
                         <h4>{el.category}</h4>
                         <p>${el.price.toFixed(2)}</p>
-                        {/*BIZ_CONST.DOLLAR_RATE*/}
-                        <ButtonAddProd {...el} />
+                        <Buttons product={el} />
                     </div>
                 </div>
             );

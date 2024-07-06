@@ -1,0 +1,17 @@
+div.buttonsWrapper {
+    padding: 0;
+    margin: 0;
+    button {
+        display: inline;
+    }
+    div.incrementDecrement {
+        button {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    }
+    span {
+        margin: 0 10px;
+    }
+}

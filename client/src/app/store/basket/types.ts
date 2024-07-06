@@ -1,6 +1,6 @@
-import { IProducts } from '../catalog/types';
+import { IProductsBasket } from '../../../widgets/menu/usernav/countProductsBasket/types';
 
 export interface IStateBasket {
-    products: Array<IProducts>;
+    products: Array<IProductsBasket>;
     listenerUpdateProducts: number;
 }

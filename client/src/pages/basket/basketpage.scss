@@ -1,4 +1,8 @@
-div.pageBasket {
-    max-width: 1000px;
-    margin: auto;
+div {
+    &.pageBasket {
+        max-width: 1000px;
+        margin: auto;
+    }
+    &.emptyBasket {
+    }
 }

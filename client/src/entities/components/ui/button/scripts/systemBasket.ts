@@ -1,10 +1,12 @@
+import { IProducts } from '../../../../../app/store/catalog/types';
 import { remElArId } from '../../../../../shared/scripts/arrays/arrays';
+import { IProductsBasket } from '../../../../../widgets/menu/usernav/countProductsBasket/types';
 import { getLSData, setLSData } from '../../../helperScripts';
 import { IBasket } from '../types';
 
 export const addProductSystem: (product: IBasket) => void = (product) => {
     if (getLSData('basket')) {
-        const productsJS = getLSData('basket') as Array<any>;
+        const productsJS = getLSData('basket') as Array<IProductsBasket>;
         for (const e of productsJS) {
             if (product.id == e.id) {
                 const newE = { ...e };
@@ -17,6 +19,34 @@ export const addProductSystem: (product: IBasket) => void = (product) => {
         }
     } else {
         setLSData('basket', [{ ...product, count: 1 }]);
+    }
+};
+
+export const removeProductSystem: (product: IProducts) => void = (product) => {
+    const productsJS: any = getLSData('basket');
+    const productBasket = productsJS.filter((el: any) => {
+        return el.id == product.id;
+    })[0];
+    // last in basket
+    // last in product
+    // not last
+    if (productBasket.count > 1) {
+        setLSData('basket', [
+            ...remElArId(productsJS, product.id),
+            { ...productBasket, count: productBasket.count - 1 },
+        ]);
+        console.log('not last');
+    }
+    if (productBasket.count == 1 && remElArId(productsJS, product.id).length) {
+        setLSData('basket', [...remElArId(productsJS, product.id)]);
+        console.log('last in product');
+    }
+    if (
+        productBasket.count == 1 &&
+        remElArId(productsJS, product.id).length == 0
+    ) {
+        console.log('last in basket');
+        localStorage.removeItem('basket');
     }
 };
 

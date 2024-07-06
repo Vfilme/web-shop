@@ -5,6 +5,7 @@ import { TotalBox } from '../../widgets/basket/totalBox/TotalBox';
 import { getLSData } from './modul';
 import { CatalogBasket } from '../../widgets/basket/catalog/CatalogBasket';
 import { IProducts } from '../../app/store/catalog/types';
+import { BackLink } from '../../entities/components/ui/button/BackLink';
 
 export const BasketPage: React.FC = () => {
     const [update, setUpdate] = useState<boolean>(false);
@@ -30,6 +31,7 @@ export const BasketPage: React.FC = () => {
             ) : (
                 <div className="catalogBasket">
                     <h2>Ваша корзина пуста {':('}</h2>
+                    <BackLink />
                 </div>
             )}
         </div>

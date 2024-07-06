@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProducts } from '../catalog/types';
 import { IStateBasket } from './types';
+import { IProductsBasket } from '../../../widgets/menu/usernav/countProductsBasket/types';
 
 const initialState: IStateBasket = {
     products: [],
@@ -11,7 +11,7 @@ const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
-        ADD_PRODUCTS(state, action: PayloadAction<IProducts[]>) {
+        ADD_PRODUCTS(state, action: PayloadAction<IProductsBasket[]>) {
             state.products = [...action.payload];
         },
         GIVE_SIGN_UPDATE_PRODUCTS(state) {
