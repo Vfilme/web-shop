@@ -1,36 +1,24 @@
-/* eslint-disable react/jsx-key */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './basketpage.scss';
 import { TotalBox } from '../../widgets/basket/totalBox/TotalBox';
-import { getLSData } from './modul';
 import { CatalogBasket } from '../../widgets/basket/catalog/CatalogBasket';
-import { IProducts } from '../../app/store/catalog/types';
 import { BackLink } from '../../entities/components/ui/button/BackLink';
+import { useTypedSelector } from '../../app/store/hooks/hooks';
 
 export const BasketPage: React.FC = () => {
-    const [update, setUpdate] = useState<boolean>(false);
-    let productsBasket: Array<IProducts> = getLSData(
-        'basket',
-    ) as Array<IProducts>;
-    useEffect(() => {
-        productsBasket = getLSData('basket') as Array<IProducts>;
-    }, [update]);
+    const productsBasket = useTypedSelector((state) => state.basket.products);
 
     return (
         <div className="pageBasket">
-            <h1>Ваша корзина</h1>
-            {productsBasket ? (
-                [
-                    <CatalogBasket products={productsBasket} />,
-                    <TotalBox
-                        fun={() => {
-                            setUpdate(!update);
-                        }}
-                    />,
-                ]
+            <h1>Корзина</h1>
+            {productsBasket[0] ? (
+                <div className="prdouctsBasketWrapper">
+                    <CatalogBasket products={productsBasket} />
+                    <TotalBox />
+                </div>
             ) : (
-                <div className="catalogBasket">
-                    <h2>Ваша корзина пуста {':('}</h2>
+                <div className="emptyBasket">
+                    <p>Ваша корзина пуста {':('}</p>
                     <BackLink />
                 </div>
             )}

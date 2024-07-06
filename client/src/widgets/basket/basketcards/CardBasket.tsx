@@ -2,6 +2,7 @@ import React from 'react';
 import { IBasket } from '../../../entities/components/ui/button/types';
 import { BIZ_CONST } from '../../../entities/const/const';
 import './cardBasket.scss';
+import { Buttons } from '../../catalog/cards/buttons/Buttons';
 
 export const CardBasket: React.FC<IBasket> = (props) => {
     return (
@@ -10,9 +11,9 @@ export const CardBasket: React.FC<IBasket> = (props) => {
             <div>
                 <h2>{props.title}</h2>
                 <h4>{props.category}</h4>
-                <p>{(props.price * BIZ_CONST.DOLLAR_RATE).toFixed(2)} руб.</p>
-                <p>шт: {props.count}</p>
+                <p>${props.price.toFixed(2)}</p>
             </div>
+            <Buttons product={props} />
         </div>
     );
 };

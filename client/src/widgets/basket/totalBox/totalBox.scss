@@ -1,11 +1,14 @@
 @import '@scss/const';
 
 div.totalBox {
-    border: 1px map-get($map: $colors, $key: easy-grey) solid;
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: map-get($map: $borders, $key: border-radius);
-    button {
-        margin-right: 20px;
+    div.basketOrder {
+        position: sticky;
+        top: 20px;
+        padding: 20px;
+        border: 1px map-get($map: $colors, $key: easy-grey) solid;
+        border-radius: map-get($map: $borders, $key: border-radius);
+        button {
+            margin: 0 20px 0 0;
+        }
     }
 }

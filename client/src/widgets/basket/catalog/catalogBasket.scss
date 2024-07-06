@@ -1,12 +1,8 @@
-@import "@scss/const";
+@import '@scss/const';
 
 div.catalogBasket {
     border: 1px map-get($map: $colors, $key: easy-grey) solid;
     border-radius: map-get($map: $borders, $key: border-radius);
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     margin: 0 auto;
-    gap: 20px;
     font-family: sans-serif;
 }
