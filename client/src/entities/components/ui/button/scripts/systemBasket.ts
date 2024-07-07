@@ -11,7 +11,6 @@ export const addProductSystem: (product: IBasket) => void = (product) => {
             if (product.id == e.id) {
                 const newE = { ...e };
                 newE.count++;
-                // setLSData('basket', [...remElArId(productsJS, e.id), newE]);
                 const newProducts = productsJS.map((el) => {
                     if (el.id == product.id) {
                         el.count++;
@@ -21,7 +20,6 @@ export const addProductSystem: (product: IBasket) => void = (product) => {
                     }
                 });
                 setLSData('basket', [...newProducts]);
-
                 break;
             } else {
                 setLSData('basket', [...productsJS, { ...product, count: 1 }]);
@@ -49,10 +47,6 @@ export const removeProductSystem: (product: IProducts) => void = (product) => {
         console.log('last in product');
     }
     if (productBasket.count > 1) {
-        // setLSData('basket', [
-        //     ...remElArId(productsJS, product.id),
-        //     { ...productBasket, count: productBasket.count - 1 },
-        // ]);
         const newProducts = productsJS.map((el: IProductsBasket) => {
             if (el.id == product.id) {
                 el.count--;

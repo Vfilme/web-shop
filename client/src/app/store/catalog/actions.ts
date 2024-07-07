@@ -24,22 +24,17 @@ export const getCount = async () => {
     }
 };
 
-export const getData: any = (pageNumber: number, url: string) => {
+export const getData: any = (url: string) => {
     return async (dispatch: Dispatch) => {
-        // const response = await getProducts(pageNumber, url);
         const response = await axios.get(url);
 
         dispatch(GET_DATA(response!.data));
     };
 };
 
-export const addData: any = (pageNumber: number) => {
-    alert('check');
+export const addData: any = (url: string) => {
     return async (dispatch: Dispatch) => {
-        const response = await getProducts(
-            pageNumber,
-            GET_URL_PAGE_SIZE(pageNumber),
-        );
+        const response = await axios.get(url);
 
         dispatch(ADD_DATA(response!.data));
     };

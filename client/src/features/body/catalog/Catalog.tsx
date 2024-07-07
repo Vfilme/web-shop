@@ -2,23 +2,12 @@
 import React, { useState } from 'react';
 import './catalog';
 import { Cards } from '../../../widgets/catalog/cards/Cards';
-import { PRODUCTS } from '../../../entities/const/const';
-import { Pagination } from '../../../widgets/catalog/pagination/Pagination';
-import {
-    getSSData,
-    setSSData,
-} from '../../../entities/components/helperScripts';
-import { ButtonLoadMore } from '../../../widgets/catalog/buttonLoadMore/ButtonLoadMore';
 import { SideBar } from '../../../widgets/catalog/sidebar/SideBar';
+import { Pagination } from '../../../widgets/catalog/pagination/Pagination';
+import { ButtonLoadMore } from '../../../widgets/catalog/buttonLoadMore/ButtonLoadMore';
 
 export const Catalog: React.FC = () => {
-    if (!sessionStorage.getItem('pageNumber')) setSSData('pageNumber', 1);
-    const [numberActualPage, setNumberActualPage] = useState<number>(
-        getSSData('pageNumber') as number,
-    );
-    const countPages = Math.ceil(20 / PRODUCTS.PAGE_SIZE);
-    const conditionButtonLoadMore =
-        numberActualPage * PRODUCTS.PAGE_SIZE < countPages * PRODUCTS.PAGE_SIZE;
+    const [update, setUpdate] = useState<boolean>(true);
     return (
         <div className="catalog">
             <div className="wrapperCards">
@@ -26,20 +15,17 @@ export const Catalog: React.FC = () => {
                     <SideBar />
                 </div>
                 <div className="content">
-                    <Cards />
+                    <Cards
+                        update={update}
+                        fun={(update) => setUpdate(update)}
+                    />
                 </div>
             </div>
-            {conditionButtonLoadMore && (
-                <ButtonLoadMore
-                    numberActualPage={numberActualPage}
-                    fun={() => setNumberActualPage(numberActualPage + 1)}
-                />
-            )}
+            <ButtonLoadMore fun={(update) => setUpdate(update)} />
             <Pagination
-                numberActualPage={numberActualPage}
-                fun={(numberActualPage) =>
-                    setNumberActualPage(numberActualPage)
-                }
+                fun={(update) => {
+                    setUpdate(update);
+                }}
             />
         </div>
     );

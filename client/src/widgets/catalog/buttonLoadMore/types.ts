@@ -1,4 +1,3 @@
 export interface IProps {
-    numberActualPage: number;
-    fun: () => void;
+    fun: (update: boolean) => void;
 }
