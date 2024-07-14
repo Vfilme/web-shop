@@ -1,0 +1,18 @@
+@use 'src/app/styles/const' as *;
+div.category-range {
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            user-select: none;
+            margin: 0 0 5px 0;
+        }
+    }
+    input[type='checkbox'] {
+        position: relative;
+        top: 4px;
+        margin: 0 5px 0 0;
+        width: 18px;
+        height: 18px;
+    }
+}

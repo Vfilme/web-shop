@@ -1,0 +1,17 @@
+@use 'src/app/styles/const' as *;
+
+div.sideBar {
+    border: 1px map-get($map: $colors, $key: easy-grey) solid;
+    border-radius: map-get($map: $borders, $key: border-radius);
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+    min-width: 250px;
+    max-width: 300px;
+    div.deleteParams {
+        margin: 10px 0;
+        color: grey;
+        user-select: none;
+        cursor: pointer;
+    }
+}

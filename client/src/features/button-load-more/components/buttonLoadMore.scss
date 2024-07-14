@@ -1,0 +1,13 @@
+@use 'src/app/styles/const' as *;
+
+.button-load-more {
+    button {
+        display: block;
+        margin: 20px auto;
+        background-color: white;
+        border: 1px map-get($map: $colors, $key: easy-grey) solid;
+        border-radius: map-get($map: $borders, $key: border-radius);
+        padding: 10px;
+        font-size: 1em;
+    }
+}

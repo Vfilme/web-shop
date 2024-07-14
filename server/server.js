@@ -34,7 +34,7 @@ app.get('/products', (req, res) => {
     const newProducts = usePriceRange(products, minPrice, maxPrice);
     const newProducts2 = useCategoriesRange(newProducts, categories);
 
-    const pageNumber = req.query.pageNumber || 1;
+    const pageNumber = req.query.page_number || 1;
     const pageSize = req.query.pageSize || 4;
 
     res.json(getPageProducts(newProducts2, pageNumber, pageSize));
@@ -55,7 +55,7 @@ app.get('/products/count', (req, res) => {
     res.json(useCategoriesRange(newProducts, categories).length);
 });
 
-app.get('/products/priceRange', (req, res) => {
+app.get('/products/price-range', (req, res) => {
     res.json(getProductsPrice(products));
 });
 

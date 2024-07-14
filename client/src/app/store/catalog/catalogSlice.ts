@@ -3,7 +3,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: IStateCatalog = {
     products: [],
-    pageNumber: JSON.parse(sessionStorage.getItem('pageNumber') as string) || 1,
+    pageNumber:
+        JSON.parse(sessionStorage.getItem('page_number') as string) || 1,
     repeatLoad: 0,
 };
 

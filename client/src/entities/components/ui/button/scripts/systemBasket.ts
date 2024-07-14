@@ -1,8 +1,8 @@
 import { IProducts } from '../../../../../app/store/catalog/types';
 import { remElArId } from '../../../../../shared/scripts/arrays/arrays';
-import { IProductsBasket } from '../../../../../widgets/menu/usernav/countProductsBasket/types';
 import { getLSData, setLSData } from '../../../helperScripts';
 import { IBasket } from '../types';
+import { IProductsBasket } from '../../../../../features/counter-basket-products';
 
 export const addProductSystem: (product: IBasket) => void = (product) => {
     if (getLSData('basket')) {

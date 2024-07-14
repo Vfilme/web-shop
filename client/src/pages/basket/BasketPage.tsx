@@ -1,6 +1,6 @@
 import React from 'react';
 import './basketpage.scss';
-import { TotalBox } from '../../widgets/basket/totalBox/TotalBox';
+import { TotalBox } from '../../widgets/basket/total-box/TotalBox';
 import { CatalogBasket } from '../../widgets/basket/catalog/CatalogBasket';
 import { BackLink } from '../../entities/components/ui/button/BackLink';
 import { useTypedSelector } from '../../app/store/hooks/hooks';

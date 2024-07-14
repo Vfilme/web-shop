@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IStateBasket } from './types';
-import { IProductsBasket } from '../../../widgets/menu/usernav/countProductsBasket/types';
-
+import { IProductsBasket } from '../../../features/counter-basket-products';
 const initialState: IStateBasket = {
     products: [],
     listenerUpdateProducts: 0,

@@ -41,8 +41,17 @@ module.exports = {
                 use: 'html-loader',
             },
             {
-                test: /\.s?css$/,
+                test: /\.scss$/,
+                exclude: /\.module\.scss$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.module\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader?modules',
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.(png|jpe?g|gif|svg|webp)$/i,
@@ -60,10 +69,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', '.scss', '.tsx', '.ts'],
-        alias: {
-            '@scss': path.resolve(__dirname, 'src/styles'),
-        },
+        extensions: ['*', '.js', '.tsx', '.ts', '.scss'],
     },
     devServer: {
         static: {

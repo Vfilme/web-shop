@@ -1,13 +1,16 @@
 import React from 'react';
-import { AppRouter } from './Router';
-import Menu from '../features/header/menu/Menu';
-import './app.scss';
+import './styles/global.scss';
+import { RouterProvider } from 'react-router-dom';
+import { store } from './store';
+import { Provider } from 'react-redux';
+import { AppRouter } from './routers';
 
 export const App: React.FC = () => {
     return (
         <>
-            <Menu />
-            <AppRouter />
+            <Provider store={store}>
+                <RouterProvider router={AppRouter} />
+            </Provider>
         </>
     );
 };

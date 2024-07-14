@@ -1,4 +1,4 @@
-@import '@scss/const';
+@use 'src/app/styles/const' as *;
 
 div {
     &.pageBasket {

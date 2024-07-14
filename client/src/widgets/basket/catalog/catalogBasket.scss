@@ -1,4 +1,4 @@
-@import '@scss/const';
+@use 'src/app/styles/const' as *;
 
 div.catalogBasket {
     border: 1px map-get($map: $colors, $key: easy-grey) solid;
