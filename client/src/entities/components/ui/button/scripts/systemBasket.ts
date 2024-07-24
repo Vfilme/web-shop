@@ -1,5 +1,5 @@
 import { IProducts } from '../../../../../app/store/catalog/types';
-import { remElArId } from '../../../../../shared/scripts/arrays/arrays';
+import { remElArId } from '../../../../../shared/lib/arrays/arrays';
 import { getLSData, setLSData } from '../../../helperScripts';
 import { IBasket } from '../types';
 import { IProductsBasket } from '../../../../../features/counter-basket-products';

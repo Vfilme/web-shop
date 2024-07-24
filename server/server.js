@@ -27,8 +27,8 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-    const minPrice = req.query.minPrice || 0;
-    const maxPrice = req.query.maxPrice || Number.MAX_VALUE;
+    const minPrice = req.query.min_price || 0;
+    const maxPrice = req.query.max_price || Number.MAX_VALUE;
 
     const categories = req.query.categories || null;
     const newProducts = usePriceRange(products, minPrice, maxPrice);
@@ -47,8 +47,8 @@ app.get('/product', (req, res) => {
 });
 
 app.get('/products/count', (req, res) => {
-    const minPrice = req.query.minPrice || 0;
-    const maxPrice = req.query.maxPrice || Number.MAX_VALUE;
+    const minPrice = req.query.min_price || 0;
+    const maxPrice = req.query.max_price || Number.MAX_VALUE;
     const categories = req.query.categories || null;
 
     const newProducts = usePriceRange(products, minPrice, maxPrice);

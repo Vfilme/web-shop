@@ -1,60 +1,35 @@
-/* eslint-disable react/jsx-key */
 import './pagination.scss';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { IProps } from './types';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-import { addData, getData } from '../../../app/store/catalog/actions';
 import { URLS } from '../../../entities/const/const';
-import { createMassiveFromNumber } from '../../../shared/scripts/arrays/arrays';
+import { createMassiveFromNumber } from '../../../shared/lib/arrays/arrays';
+import { boundAsyncActions } from '../../../app/store';
+import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
 
 export const Pagination: React.FC<IProps> = ({ fun }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const dispatch = useDispatch();
     const pageNumber: string = searchParams.get('page_number') || '1';
+    const { getProducts, addProducts } = boundAsyncActions;
 
     const [countProducts, setCountProducts] = useState<number>(0);
 
-    const getURLParams = (urlParams = searchParams) => {
-        let url = '';
-        const params: any = {};
-        urlParams.forEach((value, key) => {
-            url += `${key}=${value}&`;
-            params[key] = value;
-        });
-        return url;
-    };
-
-    const setProducts = async (urlParams = searchParams, type = 'getData') => {
-        if (type == 'getData') {
-            console.log('get data');
-            dispatch(
-                getData(
-                    `${URLS.URL_SERVER}products/?${getURLParams(urlParams)}`,
-                ),
-            );
+    const setProducts = async (urlParams = searchParams, type = 'get') => {
+        const url = `${URLS.URL_SERVER}products/?${getURLParams(urlParams)}`;
+        if (type == 'get') {
+            getProducts(url);
         } else {
-            console.log('add data');
-            console.log(pageNumber);
-            dispatch(
-                addData(
-                    `${URLS.URL_SERVER}products/?${getURLParams(urlParams)}`,
-                ),
-            );
+            addProducts(url);
         }
-        const response = await axios.get(
-            `${URLS.URL_SERVER}products/count/?${getURLParams()}`,
-        );
+        const response = await axios.get(url);
         setCountProducts(response.data);
-        console.log('count products', countProducts);
     };
 
     useEffect(() => {
+        const url = `${URLS.URL_SERVER}products/count/?${getURLParams(searchParams)}`;
         const fun = async () => {
-            const response = await axios.get(
-                `${URLS.URL_SERVER}products/count/?${getURLParams()}`,
-            );
+            const response = await axios.get(url);
             setCountProducts(response.data);
             console.log('count products', countProducts);
         };
@@ -72,13 +47,13 @@ export const Pagination: React.FC<IProps> = ({ fun }) => {
                             key={el - 1}
                             onClick={() => {
                                 console.log('to page');
-                                fun(false); // setUpdata(false); !
+                                fun(false);
                                 const params = new URLSearchParams(
                                     searchParams.toString(),
                                 );
                                 params.set('page_number', `${el}`);
                                 setSearchParams(params);
-                                setProducts(params, 'getData');
+                                setProducts(params, 'get');
                             }}
                         >
                             {el}

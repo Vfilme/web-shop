@@ -1,7 +1,6 @@
 export interface IStateCatalog {
     products: Array<IProducts>;
-    pageNumber: number;
-    repeatLoad: number;
+    status: string;
 }
 
 export interface IProducts {

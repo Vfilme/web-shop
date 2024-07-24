@@ -1,6 +1,6 @@
 @use 'src/app/styles/const' as *;
 
-div.cards {
+div.catalog-card {
     border: 1px solid map-get($map: $colors, $key: easy-grey);
     border-radius: map-get($map: $borders, $key: border-radius);
     font-family: sans-serif;
@@ -9,9 +9,9 @@ div.cards {
         max-width: 200px;
         height: 250px;
     }
-    > div {
+    div.card-description {
         display: grid;
         grid-template-columns: auto;
-        grid-template-rows: 100px auto;
+        grid-template-rows: 120px repeat(3, 50px);
     }
 }

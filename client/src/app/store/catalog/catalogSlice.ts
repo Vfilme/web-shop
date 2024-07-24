@@ -1,32 +1,71 @@
+import axios from 'axios';
 import { IStateCatalog, IProducts } from './types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: IStateCatalog = {
     products: [],
-    pageNumber:
-        JSON.parse(sessionStorage.getItem('page_number') as string) || 1,
-    repeatLoad: 0,
+    status: 'idle',
 };
+
+export const getProducts = createAsyncThunk<
+    IProducts[],
+    string,
+    { rejectValue: string }
+>('catalog/getProducts', async (url: string, thunkAPI) => {
+    try {
+        const { data } = await axios.get<IProducts[]>(url);
+        return data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue((error as Error).message);
+    }
+});
+
+export const addProducts = createAsyncThunk<
+    IProducts[],
+    string,
+    { rejectValue: string }
+>('catalog/addProducts', async (url: string, thunkAPI) => {
+    try {
+        const { data } = await axios.get<IProducts[]>(url);
+        return data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue((error as Error).message);
+    }
+});
 
 const catalogSlice = createSlice({
     name: 'catalog',
     initialState,
-    reducers: {
-        GET_DATA(state, action: PayloadAction<IProducts[]>) {
-            state.products = [...action.payload];
-        },
-        ADD_DATA(state, action: PayloadAction<IProducts[]>) {
-            state.products = [...state.products, ...action.payload];
-        },
-        UPDATE_NUMBER_PAGE(state, action: PayloadAction<number>) {
-            state.pageNumber = action.payload;
-        },
-        REPEAT_LOAD(state) {
-            state.repeatLoad = state.repeatLoad + 1;
-        },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(getProducts.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(
+                getProducts.fulfilled,
+                (state, action: PayloadAction<IProducts[]>) => {
+                    state.products = action.payload;
+                    state.status = 'success';
+                },
+            )
+            .addCase(getProducts.rejected, (state) => {
+                state.status = 'failed';
+            })
+            .addCase(addProducts.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(
+                addProducts.fulfilled,
+                (state, action: PayloadAction<IProducts[]>) => {
+                    state.products = [...state.products, ...action.payload];
+                    state.status = 'success';
+                },
+            )
+            .addCase(addProducts.rejected, (state) => {
+                state.status = 'failed';
+            });
     },
 });
 
-export const { GET_DATA, ADD_DATA, UPDATE_NUMBER_PAGE, REPEAT_LOAD } =
-    catalogSlice.actions;
 export default catalogSlice.reducer;
