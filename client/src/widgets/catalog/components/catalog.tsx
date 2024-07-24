@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useTypedSelector } from '../../../app/store/hooks/hooks';
+import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
 import { URLS } from '../../../entities/const/const';
 import { IProducts } from '../../../app/store/catalog/types';
 import { Pagination } from '../../../features/pagination/components/pagination';

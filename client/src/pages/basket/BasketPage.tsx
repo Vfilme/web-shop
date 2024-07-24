@@ -3,7 +3,7 @@ import './basketpage.scss';
 import { TotalBox } from '../../widgets/basket/total-box/TotalBox';
 import { CatalogBasket } from '../../widgets/basket/catalog/CatalogBasket';
 import { BackLink } from '../../entities/components/ui/button/BackLink';
-import { useTypedSelector } from '../../app/store/hooks/hooks';
+import { useTypedSelector } from '../../app/store/hooks/useTypedSelector';
 
 export const BasketPage: React.FC = () => {
     const productsBasket = useTypedSelector((state) => state.basket.products);

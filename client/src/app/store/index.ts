@@ -1,5 +1,4 @@
 import { bindActionCreators, configureStore } from '@reduxjs/toolkit';
-import presenceSlice from './api/presenceSlice';
 import catalogReducer, {
     addProducts,
     getProducts,
@@ -10,7 +9,6 @@ import { useDispatch } from 'react-redux';
 export const store = configureStore({
     reducer: {
         catalog: catalogReducer,
-        presence: presenceSlice,
         basket: basketReducer,
     },
 });

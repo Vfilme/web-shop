@@ -10,18 +10,18 @@ const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
-        ADD_PRODUCTS(state, action: PayloadAction<IProductsBasket[]>) {
-            state.products = [...action.payload];
+        addProductsBasket(state, action: PayloadAction<IProductsBasket[]>) {
+            state.products = action.payload;
         },
-        GIVE_SIGN_UPDATE_PRODUCTS(state) {
+        giveSignUpdateProducts(state) {
             state.listenerUpdateProducts = state.listenerUpdateProducts + 1;
         },
-        REMOVE_PRODUCTS(state) {
+        removeProducts(state) {
             state.products = [];
         },
     },
 });
 
-export const { ADD_PRODUCTS, GIVE_SIGN_UPDATE_PRODUCTS, REMOVE_PRODUCTS } =
+export const { addProductsBasket, giveSignUpdateProducts, removeProducts } =
     basketSlice.actions;
 export default basketSlice.reducer;

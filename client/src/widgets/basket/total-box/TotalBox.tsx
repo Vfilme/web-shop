@@ -3,8 +3,8 @@ import { Button } from '../../../shared/ui/button/Button';
 import { cleanBasket } from '../../../entities/components/ui/button/scripts/systemBasket';
 import './totalBox.scss';
 import { useDispatch } from 'react-redux';
-import { REMOVE_PRODUCTS } from '../../../app/store/basket/basketSlice';
-import { useTypedSelector } from '../../../app/store/hooks/hooks';
+import { removeProducts } from '../../../app/store/basket/basketSlice';
+import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
 import { getCountArrayObjects } from '../../../entities/scripts/helperScripts';
 import { IProductsBasket } from '../../../features/counter-basket-products';
 
@@ -31,7 +31,7 @@ export const TotalBox: React.FC = () => {
                 <Button
                     onClick={() => {
                         cleanBasket();
-                        dispatch(REMOVE_PRODUCTS());
+                        dispatch(removeProducts());
                     }}
                 >
                     удалить всё

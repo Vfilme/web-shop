@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { IProductsBasket } from './types';
 import { getCountArrayObjects } from '../../../entities/scripts/helperScripts';
 import {
-    ADD_PRODUCTS,
-    REMOVE_PRODUCTS,
+    addProductsBasket,
+    removeProducts,
 } from '../../../app/store/basket/basketSlice';
 import { getLSData } from '../../../entities/components/helperScripts';
-import { useTypedSelector } from '../../../app/store/hooks/hooks';
+import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
 
 export const CounterBasketProducts: React.FC = () => {
     const listener = useTypedSelector(
@@ -20,9 +20,9 @@ export const CounterBasketProducts: React.FC = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (getLSData('basket'))
-            dispatch(ADD_PRODUCTS(getLSData('basket') as any));
+            dispatch(addProductsBasket(getLSData('basket') as any));
         else {
-            dispatch(REMOVE_PRODUCTS());
+            dispatch(removeProducts());
         }
     }, [listener]);
     return (

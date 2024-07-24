@@ -6,7 +6,7 @@ import {
     addProductSystem,
     removeProductSystem,
 } from '../../components/ui/button/scripts/systemBasket';
-import { GIVE_SIGN_UPDATE_PRODUCTS } from '../../../app/store/basket/basketSlice';
+import { giveSignUpdateProducts } from '../../../app/store/basket/basketSlice';
 import { Button } from '../../../shared/ui/button/Button';
 import './button.scss';
 
@@ -39,7 +39,7 @@ export const Buttons: React.FC<any> = (props) => {
                     onClick={() => {
                         setUpdate(!update);
                         addProductSystem(props.product);
-                        dispatch(GIVE_SIGN_UPDATE_PRODUCTS());
+                        dispatch(giveSignUpdateProducts());
                     }}
                 >
                     купить
@@ -50,7 +50,7 @@ export const Buttons: React.FC<any> = (props) => {
                         onClick={() => {
                             setUpdate(!update);
                             removeProductSystem(props.product);
-                            dispatch(GIVE_SIGN_UPDATE_PRODUCTS());
+                            dispatch(giveSignUpdateProducts());
                         }}
                     >
                         -
@@ -60,7 +60,7 @@ export const Buttons: React.FC<any> = (props) => {
                         onClick={() => {
                             setUpdate(!update);
                             addProductSystem(props.product);
-                            dispatch(GIVE_SIGN_UPDATE_PRODUCTS());
+                            dispatch(giveSignUpdateProducts());
                         }}
                     >
                         +
