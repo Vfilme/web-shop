@@ -1,4 +1,6 @@
-import { Countable } from './types';
+interface Countable {
+    count: number;
+}
 
 export const getCountArrayObjects = <T extends Countable>(
     array: Array<T>,

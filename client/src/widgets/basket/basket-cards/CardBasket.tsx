@@ -1,8 +1,8 @@
 import React from 'react';
-import { IBasket } from '../../../entities/components/ui/button/types';
-import { BIZ_CONST } from '../../../entities/const/const';
 import './cardBasket.scss';
-import { Buttons } from '../../../entities/cards/buttons/Buttons';
+import { IBasket } from '../../../entities/button-basket/types';
+import { Buttons } from '../../../features/buttons-purchase';
+
 export const CardBasket: React.FC<IBasket> = (props) => {
     return (
         <div className="cardBasket">

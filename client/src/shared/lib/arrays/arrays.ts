@@ -1,7 +1,7 @@
 import { IId } from './types';
 
 // remove Element from Array by Id remElArId([{id:1},{id:2},{id:3}], 2) --> [{id:1},{id:3}]
-export const remElArId = <typeEl extends IId>(
+export const removeElementFromArrayById = <typeEl extends IId>(
     m: Array<typeEl>,
     id: number,
 ): Array<typeEl> => {

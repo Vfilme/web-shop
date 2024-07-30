@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './categoryRange.scss';
-import { URLS } from '../../entities/const/const';
-import { getServerData } from '../../entities/scripts/serverScripts';
+import { URLS } from '../../../shared/const/const';
+import { getServerData } from '../../../shared/api/getServerData';
+import { getStatusChecked } from '../model/getStatusChecked';
 
 export const CategoryRange: React.FC = () => {
     const [categories, setCategories] = useState<string[]>();
@@ -10,6 +11,7 @@ export const CategoryRange: React.FC = () => {
 
     const changeChecked = (el: string) => {
         const params = new URLSearchParams(searchParams.toString());
+
         if (!searchParams.has('categories')) {
             params.set('categories', `${[`${el}`]}`);
             setSearchParams(params);
@@ -32,6 +34,7 @@ export const CategoryRange: React.FC = () => {
             }
         }
     };
+
     useEffect(() => {
         const fun = async () => {
             const data = await getServerData(
@@ -41,14 +44,6 @@ export const CategoryRange: React.FC = () => {
         };
         fun();
     }, []);
-
-    const getStatusChecked = (el: string) => {
-        return (
-            searchParams.has('categories')
-                ? searchParams.get('categories')?.split(',')
-                : ['empty']
-        )?.includes(el);
-    };
 
     return (
         <div className="category-range">
@@ -60,7 +55,10 @@ export const CategoryRange: React.FC = () => {
                               <li key={i}>
                                   <input
                                       type="checkbox"
-                                      checked={getStatusChecked(el)}
+                                      checked={getStatusChecked(
+                                          el,
+                                          searchParams,
+                                      )}
                                       onChange={() => {
                                           changeChecked(el);
                                       }}

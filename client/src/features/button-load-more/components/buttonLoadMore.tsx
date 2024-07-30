@@ -2,37 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { IProps } from './types';
 import './buttonLoadMore.scss';
 import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
-import { URLS } from '../../../entities/const/const';
+import { URLS } from '../../../shared/const/const';
 import { boundAsyncActions } from '../../../app/store';
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
+import { getCountProducts } from '../../../shared/api/getCountProducts';
 
 export const ButtonLoadMore: React.FC<IProps> = ({ fun }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [countProducts, setCountProducts] = useState<number>(0);
     const pageNumber: string = searchParams.get('page_number') || '1';
-    const { getProducts, addProducts } = boundAsyncActions;
+    const { addProducts } = boundAsyncActions;
+    const needButton = Number(pageNumber) < countProducts / 4;
 
-    const setProducts = async (urlParams = searchParams, type = 'get') => {
+    const updateProducts = async (urlParams = searchParams) => {
         const url = `${URLS.URL_SERVER}products/?${getURLParams(urlParams)}`;
-        if (type == 'get') {
-            getProducts(url);
-        } else {
-            addProducts(url);
-        }
-        const response = await axios.get(url);
-        setCountProducts(response.data);
+        addProducts(url);
     };
+
     useEffect(() => {
-        const url = `${URLS.URL_SERVER}products/count/?${getURLParams(searchParams)}`;
-        const fun = async () => {
-            const response = await axios.get(url);
-            setCountProducts(response.data);
+        const setCount = async () => {
+            const count = await getCountProducts(getURLParams(searchParams));
+            setCountProducts(count);
         };
-        fun();
+        setCount();
     }, [searchParams]);
     return (
-        Number(pageNumber) < countProducts / 4 && (
+        needButton && (
             <button
                 className="button-load-more"
                 onClick={() => {
@@ -40,7 +35,7 @@ export const ButtonLoadMore: React.FC<IProps> = ({ fun }) => {
                     const params = new URLSearchParams(searchParams.toString());
                     params.set('page_number', `${Number(pageNumber) + 1}`);
                     setSearchParams(params);
-                    setProducts(params, 'add');
+                    updateProducts(params);
                 }}
             >
                 load more

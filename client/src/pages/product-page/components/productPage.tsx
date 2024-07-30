@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IProducts } from '../../../app/store/catalog/types';
-import { getServerData } from '../../../entities/scripts/serverScripts';
-import { URLS } from '../../../entities/const/const';
-import { BackLink } from '../../../entities/components/ui/button/BackLink';
-import { Buttons } from '../../../entities/cards/buttons/Buttons';
-
+import { getServerData } from '../../../shared/api/getServerData';
+import { URLS } from '../../../shared/const/const';
 import './productPage.scss';
+import { BackLink } from '../../../entities/back-link';
+import { Buttons } from '../../../features/buttons-purchase';
 
 export const ProductPage: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();

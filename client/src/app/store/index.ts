@@ -3,7 +3,11 @@ import catalogReducer, {
     addProducts,
     getProducts,
 } from './catalog/catalogSlice';
-import basketReducer from './basket/basketSlice';
+import basketReducer, {
+    addProductsBasket,
+    giveSignUpdateProducts,
+    removeProducts,
+} from './basket/basketSlice';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
@@ -22,7 +26,15 @@ const asyncActions = {
     addProducts,
 };
 
+const syncActions = {
+    addProductsBasket,
+    giveSignUpdateProducts,
+    removeProducts,
+};
+
 export const boundAsyncActions = bindActionCreators(
     asyncActions,
     store.dispatch,
 );
+
+export const boundSyncActions = bindActionCreators(syncActions, store.dispatch);

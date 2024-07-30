@@ -1,16 +1,13 @@
 import './catalogBasket';
 import React from 'react';
 import { CardBasket } from '../basket-cards/CardBasket';
-import { IProducts } from '../../../app/store/catalog/types';
+import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
 
-interface IProps {
-    products: Array<IProducts>;
-}
-
-export const CatalogBasket: React.FC<IProps> = (props) => {
+export const CatalogBasket: React.FC = () => {
+    const products = useTypedSelector((state) => state.basket.products);
     return (
         <div className="catalogBasket">
-            {(props.products as Array<IProducts>).map((el: IProducts) => {
+            {products.map((el) => {
                 return <CardBasket {...el} key={el.id} />;
             })}
         </div>

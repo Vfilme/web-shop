@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
-import { URLS } from '../../../entities/const/const';
+import { URLS } from '../../../shared/const/const';
 import { IProducts } from '../../../app/store/catalog/types';
 import { Pagination } from '../../../features/pagination/components/pagination';
 import { ButtonLoadMore } from '../../../features/button-load-more';
@@ -9,6 +9,7 @@ import './catalog.scss';
 import { CatalogCard } from '../../../entities/catalog-card/components/catalogCard';
 import { boundAsyncActions } from '../../../app/store/index';
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
+import { Buttons } from '../../../features/buttons-purchase';
 
 export const Catalog: React.FC = () => {
     const [update, setUpdate] = useState<boolean>(true);
@@ -16,26 +17,17 @@ export const Catalog: React.FC = () => {
     const products = useTypedSelector((state) => state.catalog.products);
     const [status, setStatus] = useState<boolean>(false);
     const { getProducts } = boundAsyncActions;
-
-    const setProducts = async (urlParams = searchParams, type = 'get') => {
-        const url = `${URLS.URL_SERVER}products/?${getURLParams(urlParams)}`;
-        if (type == 'get') {
-            getProducts(url);
-        } else {
-            getProducts(url);
-        }
-    };
+    const url = `${URLS.URL_SERVER}products/?${getURLParams(searchParams)}`;
 
     useEffect(() => {
         if (!status) {
-            setProducts();
+            getProducts(url);
         }
         if (status && update) {
-            console.log('set page number 1');
             const params = new URLSearchParams(searchParams.toString());
             params.delete('page_number');
             setSearchParams(params);
-            setProducts();
+            getProducts(url);
         }
         setStatus(true);
         setUpdate(true);
@@ -46,7 +38,11 @@ export const Catalog: React.FC = () => {
             <div className="wrapper-products">
                 {products.length ? (
                     (products as Array<IProducts>).map((el) => {
-                        return <CatalogCard el={el} key={el.id} />;
+                        return (
+                            <CatalogCard el={el} key={el.id}>
+                                <Buttons product={el} />
+                            </CatalogCard>
+                        );
                     })
                 ) : (
                     <div className="cards">

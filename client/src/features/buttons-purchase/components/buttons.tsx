@@ -1,45 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { IProductsBasket } from '../../../features/counter-basket-products';
-import { getLSData } from '../../components/helperScripts';
+import { boundSyncActions } from '../../../app/store';
+import { IProductsBasket } from '../../counter-basket-products';
+import { Button } from '../../../shared/ui/button/Button';
+import './button.scss';
+import { getLSData } from '../../../entities/storage/localStorage';
 import {
     addProductSystem,
     removeProductSystem,
-} from '../../components/ui/button/scripts/systemBasket';
-import { giveSignUpdateProducts } from '../../../app/store/basket/basketSlice';
-import { Button } from '../../../shared/ui/button/Button';
-import './button.scss';
+} from '../../../entities/button-basket/systemBasket';
 
-export const Buttons: React.FC<any> = (props) => {
-    const [countProduct, setCountProduct] = useState<any>([]);
+export const Buttons: React.FC<any> = ({ product }) => {
+    const [countProduct, setCountProduct] = useState<number>(0);
     const [update, setUpdate] = useState<boolean>(false);
+    const { giveSignUpdateProducts } = boundSyncActions;
 
     useEffect(() => {
         const productsBasket: IProductsBasket[] | null = getLSData('basket');
         if (productsBasket) {
             const listCount = productsBasket.filter(({ id }) => {
-                return id == props.product.id;
+                return id == product.id;
             });
             if (listCount[0]) {
-                console.log(listCount[0].count);
                 setCountProduct(listCount[0].count);
             } else {
-                console.log('last in product !');
                 setCountProduct(0);
             }
         } else {
             setCountProduct(0);
         }
     }, [update]);
-    const dispatch = useDispatch();
     return (
         <div className="buttonsWrapper">
             {countProduct == 0 ? (
                 <Button
                     onClick={() => {
                         setUpdate(!update);
-                        addProductSystem(props.product);
-                        dispatch(giveSignUpdateProducts());
+                        addProductSystem(product);
+                        giveSignUpdateProducts();
                     }}
                 >
                     купить
@@ -49,8 +46,8 @@ export const Buttons: React.FC<any> = (props) => {
                     <Button
                         onClick={() => {
                             setUpdate(!update);
-                            removeProductSystem(props.product);
-                            dispatch(giveSignUpdateProducts());
+                            removeProductSystem(product);
+                            giveSignUpdateProducts();
                         }}
                     >
                         -
@@ -59,8 +56,8 @@ export const Buttons: React.FC<any> = (props) => {
                     <Button
                         onClick={() => {
                             setUpdate(!update);
-                            addProductSystem(props.product);
-                            dispatch(giveSignUpdateProducts());
+                            addProductSystem(product);
+                            giveSignUpdateProducts();
                         }}
                     >
                         +

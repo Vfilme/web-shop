@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import './counterBasketProducts.scss';
 import { useDispatch } from 'react-redux';
 import { IProductsBasket } from './types';
-import { getCountArrayObjects } from '../../../entities/scripts/helperScripts';
+import { getCountArrayObjects } from '../../../shared/lib/helpers/getCountArrayObjects';
 import {
     addProductsBasket,
     removeProducts,
 } from '../../../app/store/basket/basketSlice';
-import { getLSData } from '../../../entities/components/helperScripts';
 import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
+import { getLSData } from '../../../entities/storage/localStorage';
 
 export const CounterBasketProducts: React.FC = () => {
     const listener = useTypedSelector(

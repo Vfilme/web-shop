@@ -3,6 +3,7 @@ import { ReadonlyProps } from '../../../shared/types';
 
 interface IProps {
     el: IProducts;
+    children: JSX.Element;
     key?: number;
 }
 
