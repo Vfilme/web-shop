@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import './priceRange.scss';
 import { handleInputChange } from '../model/handleInputChange';
 import { setPriceRange } from '../model/setPriceRange';
+import { changePriceRange } from '../model/changePriceRange';
 
 export const PriceRange: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -18,14 +19,7 @@ export const PriceRange: React.FC = () => {
         setPriceRange(setValue, setAvailableNumbers, searchParams);
     }, [searchParams]);
 
-    const changePriceRange = () => {
-        const params = new URLSearchParams(searchParams.toString());
-        params.set('min_price', `${value[0]}`);
-        params.set('max_price', `${value[1]}`);
-        setSearchParams(params);
-    };
-
-    const handleChange = (event: Event, newValue: number | number[]) => {
+    const handleChange = (event: Event, newValue: number[] | number) => {
         setValue(newValue as number[]);
     };
 
@@ -37,7 +31,7 @@ export const PriceRange: React.FC = () => {
                     value={value}
                     onChange={handleChange}
                     onMouseUp={() => {
-                        changePriceRange();
+                        changePriceRange(searchParams, setSearchParams, value);
                     }}
                     valueLabelDisplay="auto"
                     min={availableNumbers[0]}
@@ -51,7 +45,7 @@ export const PriceRange: React.FC = () => {
                     onChange={handleInputChange(0, value, setValue)}
                     value={value[0]}
                     onBlur={() => {
-                        changePriceRange();
+                        changePriceRange(searchParams, setSearchParams, value);
                     }}
                 />
                 <span>до</span>
@@ -60,7 +54,7 @@ export const PriceRange: React.FC = () => {
                     value={value[1]}
                     onChange={handleInputChange(1, value, setValue)}
                     onBlur={() => {
-                        changePriceRange();
+                        changePriceRange(searchParams, setSearchParams, value);
                     }}
                 />
             </div>

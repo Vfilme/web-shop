@@ -2,9 +2,9 @@ import { getServerData } from '../../../shared/api/getServerData';
 import { URLS } from '../../../shared/const/const';
 
 export const setPriceRange = async (
-    setValue: any,
-    setAvailableNumbers: any,
-    searchParams: any,
+    setValue: (value: number[]) => void,
+    setAvailableNumbers: (value: number[]) => void,
+    searchParams: URLSearchParams,
 ) => {
     const params = new URLSearchParams(searchParams.toString());
 
