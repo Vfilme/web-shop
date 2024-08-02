@@ -1,8 +1,10 @@
 @use 'src/app/styles/const' as *;
 
-div.catalogBasket {
+div.empty-basket {
+    padding: 20px;
     border: 1px map-get($map: $colors, $key: easy-grey) solid;
     border-radius: map-get($map: $borders, $key: border-radius);
-    margin: 0 auto;
-    font-family: sans-serif;
+    p {
+        font-size: 1.5em;
+    }
 }

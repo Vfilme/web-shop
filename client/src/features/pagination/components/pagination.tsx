@@ -2,7 +2,7 @@ import './pagination.scss';
 import React, { useEffect, useState } from 'react';
 import { IProps } from './types';
 import { useSearchParams } from 'react-router-dom';
-import { URLS } from '../../../shared/const/const';
+import { PRODUCTS, URLS } from '../../../shared/const/const';
 import { createMassiveFromNumber } from '../../../shared/lib/arrays/arrays';
 import { boundAsyncActions } from '../../../app/store';
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
@@ -14,7 +14,7 @@ export const Pagination: React.FC<IProps> = ({ fun }) => {
     const { getProducts } = boundAsyncActions;
     const [countProducts, setCountProducts] = useState<number>(0);
     const valuesButtons = createMassiveFromNumber(
-        Math.floor(countProducts) / 4, // 4 - count products on one page
+        Math.floor(countProducts) / PRODUCTS.PAGE_SIZE,
     );
 
     const updateProducts = async (urlParams = searchParams) => {

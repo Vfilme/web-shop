@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IProps } from './types';
 import './buttonLoadMore.scss';
 import { useSearchParams } from 'react-router-dom';
-import { URLS } from '../../../shared/const/const';
+import { PRODUCTS, URLS } from '../../../shared/const/const';
 import { boundAsyncActions } from '../../../app/store';
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
 import { getCountProducts } from '../../../shared/api/getCountProducts';
@@ -12,7 +12,7 @@ export const ButtonLoadMore: React.FC<IProps> = ({ fun }) => {
     const [countProducts, setCountProducts] = useState<number>(0);
     const pageNumber: string = searchParams.get('page_number') || '1';
     const { addProducts } = boundAsyncActions;
-    const needButton = Number(pageNumber) < countProducts / 4;
+    const needButton = Number(pageNumber) < countProducts / PRODUCTS.PAGE_SIZE;
 
     const updateProducts = async (urlParams = searchParams) => {
         const url = `${URLS.URL_SERVER}products/?${getURLParams(urlParams)}`;

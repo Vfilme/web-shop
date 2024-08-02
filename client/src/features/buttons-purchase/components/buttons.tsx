@@ -39,7 +39,7 @@ export const Buttons: React.FC<any> = ({ product }) => {
                         giveSignUpdateProducts();
                     }}
                 >
-                    купить
+                    add to bag
                 </Button>
             ) : (
                 <div className="incrementDecrement">

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import React from 'react';
-import { BasketPage } from '../../pages/basket/BasketPage';
+import { BasketPage } from '../../pages/basket/components/basketPage';
 import { Layout } from '../layout';
 import { CatalogPage } from '../../pages/catalog-page';
 import { ProductPage } from '../../pages/product-page';

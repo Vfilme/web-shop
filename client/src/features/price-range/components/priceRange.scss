@@ -22,6 +22,7 @@ div.price-range {
             width: 80px;
             border: 1px map-get($map: $colors, $key: easy-grey) solid;
             border-radius: map-get($map: $borders, $key: border-radius);
+            background-color: white;
 
             &:focus {
                 border: 1px black solid;

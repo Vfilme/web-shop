@@ -1,9 +1,9 @@
 [
     {
         "id": 3,
-        "title": "New title",
+        "title": "Special grey hooded",
         "price": 100,
-        "description": "New Descripción",
+        "description": "Elevate your comfort and style with our classic gray hoodie. Made from a high-quality cotton blend, this hoodie offers a soft, cozy feel and durability for everyday wear. Its versatile gray color pairs effortlessly with any outfit, making it a must-have staple in your wardrobe.",
         "images": [
             "https://i.imgur.com/cHddUCu.jpeg",
             "https://i.imgur.com/CFOjAgK.jpeg",
@@ -523,7 +523,7 @@
     },
     {
         "id": 88,
-        "title": "123",
+        "title": "t-shirt for wolf",
         "price": 1,
         "description": "asdasd",
         "images": ["https://i.imgur.com/QkIa5tT.jpeg"],

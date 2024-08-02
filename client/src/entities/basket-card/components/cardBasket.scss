@@ -1,0 +1,25 @@
+@use 'src/app/styles/const' as *;
+
+$border-radius: map-get(
+    $map: $borders,
+    $key: border-radius,
+);
+
+div.cardBasket {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    background-color: map-get($map: $colors, $key: background-card);
+    border: 1px solid map-get($map: $colors, $key: easy-grey);
+    border-radius: map-get($map: $borders, $key: border-radius);
+    img {
+        width: 200px;
+        height: 200px;
+        border-radius: $border-radius 0 0 $border-radius;
+    }
+    div.cash-result {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-around;
+        align-items: center;
+    }
+}

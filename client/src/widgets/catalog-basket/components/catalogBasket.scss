@@ -1,0 +1,12 @@
+div {
+    &.products-basket {
+        display: grid;
+        gap: 20px;
+        font-family: sans-serif;
+    }
+    button.del-products-basket {
+        all: unset;
+        display: block;
+        margin: 5px 0 5px auto;
+    }
+}

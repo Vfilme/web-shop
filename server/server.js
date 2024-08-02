@@ -35,7 +35,7 @@ app.get('/products', (req, res) => {
     const newProducts2 = useCategoriesRange(newProducts, categories);
 
     const pageNumber = req.query.page_number || 1;
-    const pageSize = req.query.pageSize || 4;
+    const pageSize = req.query.pageSize || 8;
 
     res.json(getPageProducts(newProducts2, pageNumber, pageSize));
 });

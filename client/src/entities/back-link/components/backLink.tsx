@@ -11,7 +11,7 @@ export const BackLink = () => {
                 navigate(-1);
             }}
         >
-            назад
+            go back
         </button>
     );
 };

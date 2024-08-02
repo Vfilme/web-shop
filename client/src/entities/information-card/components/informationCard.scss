@@ -1,0 +1,47 @@
+@use 'src/app/styles/const' as *;
+
+$border-radius: map-get(
+    $map: $borders,
+    $key: border-radius,
+);
+
+div.wrapper-product {
+    background-color: map-get($map: $colors, $key: background-card);
+    display: grid;
+    margin: 0 auto;
+    // max-width: 1400px;
+    border: 1px map-get($map: $colors, $key: easy-grey) solid;
+    box-sizing: border-box;
+    @media (min-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+        border-radius: $border-radius;
+        img {
+            border-radius: $border-radius 0 0 $border-radius;
+        }
+    }
+    @media (max-width: 900px) {
+        border-radius: $border-radius;
+        img {
+            border-radius: $border-radius $border-radius 0 0;
+        }
+    }
+
+    img {
+        width: 100%;
+        box-sizing: border-box;
+        justify-self: center;
+    }
+    > div {
+        box-sizing: border-box;
+        @media (min-width: 1300px) {
+            margin: 0 auto;
+            width: 500px;
+        }
+        @media (max-width: 1300px) {
+            margin: 0 20px;
+        }
+    }
+    div.wrapper-back-link {
+        margin: 15px 0;
+    }
+}
