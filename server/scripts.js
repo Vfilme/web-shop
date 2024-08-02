@@ -17,7 +17,7 @@ const getProduct = (products, id) => {
 const getProductsCategories = (products) => {
     let categories = new Set();
     products.forEach(({ category }) => {
-        categories.add(category);
+        categories.add(category.name);
     });
     return [...categories];
 };
@@ -50,7 +50,7 @@ const usePriceRange = (products, minPrice = 0, maxPrice = Number.MAX_VALUE) => {
 const useCategoriesRange = (products, categories) => {
     if (!categories) return products;
     return products.filter(({ category }, i) => {
-        return categories.split(',').includes(category);
+        return categories.split(',').includes(category.name);
     });
 };
 

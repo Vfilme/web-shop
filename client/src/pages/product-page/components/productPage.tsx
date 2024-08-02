@@ -24,11 +24,11 @@ export const ProductPage: React.FC = () => {
             {product ? (
                 <div className="wrapperProduct">
                     <div className="image">
-                        <img src={product.image} alt={product.title} />
+                        <img src={product.images[0]} alt={product.title} />
                     </div>
                     <div className="description">
                         <h2>{product.title}</h2>
-                        <h4>{product.category}</h4>
+                        <h4>{product.category.name}</h4>
                         <p>${product.price.toFixed(2)}</p>
                         <Buttons product={product} />
                         <BackLink />

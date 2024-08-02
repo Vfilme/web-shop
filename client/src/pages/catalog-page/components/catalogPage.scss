@@ -1,7 +1,9 @@
 div.layout-catalog {
-    margin: 20px auto;
+    box-sizing: border-box;
+    padding: 20px 20px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 300px auto;
-    width: 1400px;
+    max-width: 1800px;
     gap: 20px;
 }

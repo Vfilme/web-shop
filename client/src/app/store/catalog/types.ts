@@ -8,11 +8,16 @@ export interface IProducts {
     title: string;
     price: number;
     description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
+    images: string[];
+    creationAt: string;
+    updatedAt: string;
+    category: {
+        id: number;
+        name: string;
+        image: string;
+        creationAt: string;
+        updatedAt: string;
     };
+    rating: number;
     count?: number;
 }

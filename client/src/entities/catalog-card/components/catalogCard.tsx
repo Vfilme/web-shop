@@ -10,12 +10,18 @@ export const CatalogCard: React.FC<ReadonlyComponentProps> = ({
 }) => {
     return (
         <div className="catalog-card">
-            <Link to={`/product/${el.id}`}>
-                <img src={el.image} alt={el.title} />
+            <Link
+                to={`/product/${el.id}`}
+                // style={{ backgroundImage: `url(${el.image})` }}
+                className="image-card"
+            >
+                <img src={el.images[0]} alt={el.title} />
             </Link>
             <div className="card-description">
-                <h2>{cutSentence(el.title, 5, 40)}</h2>
-                <h4>{el.category}</h4>
+                <Link to={`/product/${el.id}`}>
+                    <h2>{cutSentence(el.title, 5, 40)}</h2>
+                </Link>
+                <h4>{el.category.name}</h4>
                 <p>${el.price.toFixed(2)}</p>
                 {children}
             </div>

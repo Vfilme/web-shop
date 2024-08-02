@@ -23,7 +23,7 @@ app.get('/test', (req, res) => {
     const categories = req.query.categories || null;
 
     const newProducts = usePriceRange(products, minPrice, maxPrice);
-    res.json(useCategoriesRange(newProducts, categories).length);
+    res.json(products);
 });
 
 app.get('/products', (req, res) => {
