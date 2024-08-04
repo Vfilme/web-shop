@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { boundSyncActions } from '../../../app/store';
 import { IProductsBasket } from '../../counter-basket-products';
 import { Button } from '../../../shared/ui/button/Button';
 import './button.scss';
@@ -8,11 +7,12 @@ import {
     addProductSystem,
     removeProductSystem,
 } from '../../../entities/button-basket/systemBasket';
+import { CatalogBoundSyncActions } from '../../../app/store/actions/catalogSyncActions';
 
 export const Buttons: React.FC<any> = ({ product }) => {
     const [countProduct, setCountProduct] = useState<number>(0);
     const [update, setUpdate] = useState<boolean>(false);
-    const { giveSignUpdateProducts } = boundSyncActions;
+    const { giveSignUpdateProducts } = CatalogBoundSyncActions;
 
     useEffect(() => {
         const productsBasket: IProductsBasket[] | null = getLSData('basket');

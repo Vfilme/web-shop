@@ -4,14 +4,14 @@ import { IProps } from './types';
 import { useSearchParams } from 'react-router-dom';
 import { PRODUCTS, URLS } from '../../../shared/const/const';
 import { createMassiveFromNumber } from '../../../shared/lib/arrays/arrays';
-import { boundAsyncActions } from '../../../app/store';
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
 import { getCountProducts } from '../../../shared/api/getCountProducts';
+import { CatalogBoundAsyncActions } from '../../../app/store/actions/catalogAsyncActions';
 
 export const Pagination: React.FC<IProps> = ({ fun }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const pageNumber: string = searchParams.get('page_number') || '1';
-    const { getProducts } = boundAsyncActions;
+    const { getProducts } = CatalogBoundAsyncActions;
     const [countProducts, setCountProducts] = useState<number>(0);
     const valuesButtons = createMassiveFromNumber(
         Math.floor(countProducts) / PRODUCTS.PAGE_SIZE,

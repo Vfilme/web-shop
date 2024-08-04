@@ -5,16 +5,27 @@ $border-radius: map-get(
     $key: border-radius,
 );
 
-div.cardBasket {
+div.card-basket {
     display: grid;
-    grid-template-columns: 2fr 4fr 2fr;
+    gap: 20px;
+    box-sizing: border-box;
+
     background-color: map-get($map: $colors, $key: background-card);
     border: 1px solid map-get($map: $colors, $key: easy-grey);
     border-radius: map-get($map: $borders, $key: border-radius);
+
+    grid-template-columns: 1fr 3fr 3fr;
+    @media (max-width: 1200px) and (min-width: 900px) {
+        grid-template-columns: 1fr 3fr 3fr;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
     img {
         width: 200px;
-        height: 200px;
         border-radius: $border-radius 0 0 $border-radius;
+        display: block;
     }
     div.cash-result {
         display: grid;

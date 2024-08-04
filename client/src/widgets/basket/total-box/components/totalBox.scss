@@ -5,5 +5,9 @@ div.basket-order {
         border: 1px map-get($map: $colors, $key: easy-grey) solid;
         border-radius: map-get($map: $borders, $key: border-radius);
         padding: 20px;
+        @media (min-width: 900px) {
+            position: sticky;
+            top: 20px;
+        }
     }
 }

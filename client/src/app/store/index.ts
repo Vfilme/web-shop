@@ -1,13 +1,6 @@
-import { bindActionCreators, configureStore } from '@reduxjs/toolkit';
-import catalogReducer, {
-    addProducts,
-    getProducts,
-} from './catalog/catalogSlice';
-import basketReducer, {
-    addProductsBasket,
-    giveSignUpdateProducts,
-    removeProducts,
-} from './basket/basketSlice';
+import { configureStore } from '@reduxjs/toolkit';
+import catalogReducer from './catalog/catalogSlice';
+import basketReducer from './basket/basketSlice';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
@@ -20,21 +13,3 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-
-const asyncActions = {
-    getProducts,
-    addProducts,
-};
-
-const syncActions = {
-    addProductsBasket,
-    giveSignUpdateProducts,
-    removeProducts,
-};
-
-export const boundAsyncActions = bindActionCreators(
-    asyncActions,
-    store.dispatch,
-);
-
-export const boundSyncActions = bindActionCreators(syncActions, store.dispatch);

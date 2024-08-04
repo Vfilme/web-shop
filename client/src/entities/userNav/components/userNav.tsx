@@ -18,6 +18,7 @@ export const UserNav: React.FC<IUserNavProps> = ({ children }) => {
                     <Link to="/user">
                         <img src="/images/user.png" alt="аккаунт" />
                     </Link>
+                    <div className="login"></div>
                 </li>
                 <li>
                     <Link to="/search">

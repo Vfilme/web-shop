@@ -7,16 +7,16 @@ import { Pagination } from '../../../features/pagination/components/pagination';
 import { ButtonLoadMore } from '../../../features/button-load-more';
 import './catalog.scss';
 import { CatalogCard } from '../../../entities/catalog-card/components/catalogCard';
-import { boundAsyncActions } from '../../../app/store/index';
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
 import { Buttons } from '../../../features/buttons-purchase';
+import { CatalogBoundAsyncActions } from '../../../app/store/actions/catalogAsyncActions';
 
 export const Catalog: React.FC = () => {
     const [update, setUpdate] = useState<boolean>(true);
     const [searchParams, setSearchParams] = useSearchParams();
     const products = useTypedSelector((state) => state.catalog.products);
     const [status, setStatus] = useState<boolean>(false);
-    const { getProducts } = boundAsyncActions;
+    const { getProducts } = CatalogBoundAsyncActions;
     const url = `${URLS.URL_SERVER}products/?${getURLParams(searchParams)}`;
 
     useEffect(() => {

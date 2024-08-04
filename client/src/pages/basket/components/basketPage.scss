@@ -10,5 +10,8 @@ div {
         display: grid;
         gap: 20px;
         grid-template-columns: 4fr 1fr;
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+        }
     }
 }
