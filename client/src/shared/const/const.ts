@@ -14,4 +14,5 @@ export enum URLS {
     URL_PRODUCTS = 'products/',
     URL_PRODUCTS_PRICE_RANGE = 'products/price-range/',
     URL_PRODUCTS_CATEGORIES = 'products/categories/',
+    URL_PRODUCTS_ALL = 'all-products',
 }

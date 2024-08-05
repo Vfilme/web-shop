@@ -9,22 +9,32 @@ import {
 } from '../../../app/store/basket/basketSlice';
 import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
 import { getLSData } from '../../../entities/storage/localStorage';
+import { getActualProducts } from '../module/getActualProducts';
+import { isNotNull } from '../../../shared/lib/helpers/IsNotNull';
+import { IBasketCard } from '../../../shared/types/basketCard';
 
 export const CounterBasketProducts: React.FC = () => {
+    const dispatch = useDispatch();
     const listener = useTypedSelector(
         (state) => state.basket.listenerUpdateProducts,
     );
     const baksetProducts = useTypedSelector(
         (state) => state.basket.products,
     ) as Array<IProductsBasket>;
-    const dispatch = useDispatch();
+
     useEffect(() => {
-        if (getLSData('basket'))
-            dispatch(addProductsBasket(getLSData('basket') as any));
-        else {
+        const products: IBasketCard[] | null = getLSData('basket');
+        if (isNotNull(products)) {
+            const updateProducts = async () => {
+                const newProducts = await getActualProducts(products);
+                dispatch(addProductsBasket(newProducts));
+            };
+            updateProducts();
+        } else {
             dispatch(removeProducts());
         }
     }, [listener]);
+
     return (
         <div
             className={`wrapperTotalCount ${getCountArrayObjects(baksetProducts) ? 'fullBasket' : 'emptyBasket'}`}

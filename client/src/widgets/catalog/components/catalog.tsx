@@ -15,6 +15,7 @@ export const Catalog: React.FC = () => {
     const [update, setUpdate] = useState<boolean>(true);
     const [searchParams, setSearchParams] = useSearchParams();
     const products = useTypedSelector((state) => state.catalog.products);
+    const statusProducts = useTypedSelector((state) => state.catalog.status);
     const [status, setStatus] = useState<boolean>(false);
     const { getProducts } = CatalogBoundAsyncActions;
     const url = `${URLS.URL_SERVER}products/?${getURLParams(searchParams)}`;
@@ -36,11 +37,26 @@ export const Catalog: React.FC = () => {
     return (
         <div className="catalog">
             <div className="wrapper-products">
-                {products.length ? (
+                {statusProducts == 'loading' && (
+                    <div>Товар грузиться, подождите</div>
+                )}
+                {statusProducts == 'success' &&
                     (products as Array<IProducts>).map((el) => {
                         return (
                             <CatalogCard el={el} key={el.id}>
-                                <Buttons product={el} />
+                                <Buttons id={el.id} />
+                            </CatalogCard>
+                        );
+                    })}
+                {statusProducts == 'failed' && (
+                    <div>загрузка прошла неуспешно</div>
+                )}
+
+                {/* {products.length ? (
+                    (products as Array<IProducts>).map((el) => {
+                        return (
+                            <CatalogCard el={el} key={el.id}>
+                                <Buttons id={el.id} />
                             </CatalogCard>
                         );
                     })
@@ -48,7 +64,7 @@ export const Catalog: React.FC = () => {
                     <div className="cards">
                         <h2>Товара с такими критериями нет :{'('}</h2>
                     </div>
-                )}
+                )} */}
             </div>
             <div className="wrapper-pagination">
                 <ButtonLoadMore fun={(update) => setUpdate(update)} />

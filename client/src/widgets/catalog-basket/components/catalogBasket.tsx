@@ -1,12 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { cleanBasket } from '../../../entities/button-basket/systemBasket';
+import { cleanBasket } from '../../../entities/basket-card/module/systemBasket';
 import './catalogBasket.scss';
-import React, { memo } from 'react';
+import React from 'react';
 import { removeProducts } from '../../../app/store/basket/basketSlice';
-import { CardBasket } from '../../../entities/basket-card/components/cardBasket';
+import { MemoizedCardBasket } from '../../../entities/basket-card/components/cardBasket';
 import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
-
-const MemoizedCardBasket = memo(CardBasket);
 
 export const CatalogBasket: React.FC = () => {
     const dispatch = useDispatch();
@@ -25,8 +23,6 @@ export const CatalogBasket: React.FC = () => {
             </button>
             <div className="products-basket">
                 {products.map((el) => {
-                    // return <CardBasket {...el} key={el.id} />;
-                    // return <MemoizedCardBasket {...el} key={el.id} />;
                     return (
                         <MemoizedCardBasket
                             title={el.title}

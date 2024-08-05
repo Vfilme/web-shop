@@ -1,1 +1,1 @@
-export { CardBasket } from './components/cardBasket';
+export { MemoizedCardBasket } from './components/cardBasket';

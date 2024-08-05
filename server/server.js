@@ -26,6 +26,10 @@ app.get('/test', (req, res) => {
     res.json(products);
 });
 
+app.get('/all-products', (req, res) => {
+    res.json(products);
+});
+
 app.get('/products', (req, res) => {
     const minPrice = req.query.min_price || 0;
     const maxPrice = req.query.max_price || Number.MAX_VALUE;

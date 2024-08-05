@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { IProductsBasket } from '../../counter-basket-products';
 import { Button } from '../../../shared/ui/button/Button';
 import './button.scss';
 import { getLSData } from '../../../entities/storage/localStorage';
 import {
     addProductSystem,
     removeProductSystem,
-} from '../../../entities/button-basket/systemBasket';
+} from '../../../entities/basket-card/module/systemBasket';
 import { CatalogBoundSyncActions } from '../../../app/store/actions/catalogSyncActions';
+import { isNotNull } from '../../../shared/lib/helpers/IsNotNull';
+import { IBasketCard } from '../../../shared/types/basketCard';
 
-export const Buttons: React.FC<any> = ({ product }) => {
+interface IProps {
+    id: number;
+}
+
+export const Buttons: React.FC<IProps> = ({ id }) => {
     const [countProduct, setCountProduct] = useState<number>(0);
     const [update, setUpdate] = useState<boolean>(false);
     const { giveSignUpdateProducts } = CatalogBoundSyncActions;
 
     useEffect(() => {
-        const productsBasket: IProductsBasket[] | null = getLSData('basket');
-        if (productsBasket) {
-            const listCount = productsBasket.filter(({ id }) => {
-                return id == product.id;
+        const products: IBasketCard[] | null = getLSData('basket');
+        if (isNotNull(products)) {
+            const [productOrder] = products.filter((e: IBasketCard) => {
+                return e.id == id;
             });
-            if (listCount[0]) {
-                setCountProduct(listCount[0].count);
+            if (productOrder) {
+                setCountProduct(productOrder.count);
             } else {
                 setCountProduct(0);
             }
@@ -29,13 +34,14 @@ export const Buttons: React.FC<any> = ({ product }) => {
             setCountProduct(0);
         }
     }, [update]);
+
     return (
         <div className="buttonsWrapper">
             {countProduct == 0 ? (
                 <Button
                     onClick={() => {
                         setUpdate(!update);
-                        addProductSystem(product);
+                        addProductSystem(id);
                         giveSignUpdateProducts();
                     }}
                 >
@@ -46,7 +52,7 @@ export const Buttons: React.FC<any> = ({ product }) => {
                     <Button
                         onClick={() => {
                             setUpdate(!update);
-                            removeProductSystem(product);
+                            removeProductSystem(id);
                             giveSignUpdateProducts();
                         }}
                     >
@@ -56,7 +62,7 @@ export const Buttons: React.FC<any> = ({ product }) => {
                     <Button
                         onClick={() => {
                             setUpdate(!update);
-                            addProductSystem(product);
+                            addProductSystem(id);
                             giveSignUpdateProducts();
                         }}
                     >

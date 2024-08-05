@@ -1,53 +1,28 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './cardBasket.scss';
 import { Buttons } from '../../../features/buttons-purchase';
 import { Link } from 'react-router-dom';
+import { ICardBasket } from '../module/type';
 
-interface ICardBasket {
-    image: string;
-    title: string;
-    id: number;
-    rating: number;
-    price: number;
-    count: number;
-    category: string;
-}
-
-export const CardBasket: React.FC<ICardBasket> = ({
-    id,
-    title,
-    image,
-    rating,
-    price,
-    count,
-    category,
-}) => {
+const CardBasket: React.FC<ICardBasket> = ({ ...product }) => {
     return (
         <div className="card-basket">
-            <Link to={`/product/${id}`} className="image-card">
-                <img src={image} alt={title} />
+            <Link to={`/product/${product.id}`} className="image-card">
+                <img src={product.image} alt={product.title} />
             </Link>
             <div>
-                <Link to={`/product/${id}`} className="image-card">
-                    <h2>{title}</h2>
+                <Link to={`/product/${product.id}`} className="image-card">
+                    <h2>{product.title}</h2>
                 </Link>
-                <p>{category}</p>
-                <p>rating: {rating}</p>
+                <p>{product.category}</p>
+                <p>rating: {product.rating}</p>
             </div>
             <div className="cash-result">
-                <Buttons
-                    product={{
-                        id,
-                        title,
-                        image,
-                        rating,
-                        price,
-                        count,
-                        category,
-                    }}
-                />
-                <p>${(price * count).toFixed(2)}</p>
+                <Buttons id={product.id} />
+                <p>${(product.price * product.count).toFixed(2)}</p>
             </div>
         </div>
     );
 };
+
+export const MemoizedCardBasket = memo(CardBasket);

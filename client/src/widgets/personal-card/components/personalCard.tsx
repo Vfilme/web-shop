@@ -24,7 +24,10 @@ export const PersonalCard: React.FC = () => {
         <>
             {product ? (
                 <InformationCard product={product}>
-                    {[<Buttons product={product} />, <BackLink />]}
+                    {[
+                        <Buttons id={product.id} key={0} />,
+                        <BackLink key={1} />,
+                    ]}
                 </InformationCard>
             ) : (
                 <h1>Товар не найден :{'('}</h1>

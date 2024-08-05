@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import React from 'react';
-import { BasketPage } from '../../pages/basket/components/basketPage';
 import { Layout } from '../layout';
 import { CatalogPage } from '../../pages/catalog-page';
 import { ProductPage } from '../../pages/product-page';
+import { BasketPage } from '../../pages/basket-page';
 
 export const AppRouter = createBrowserRouter([
     {
