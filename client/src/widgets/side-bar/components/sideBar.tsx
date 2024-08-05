@@ -16,7 +16,7 @@ export const SideBar: React.FC = () => {
                             setSearchParams();
                         }}
                     >
-                        Сбросить все
+                        reset everything
                     </div>
                 )}
                 <PriceRange />

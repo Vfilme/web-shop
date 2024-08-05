@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { IStateCatalog, IProducts } from './types';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { EStatusLoading } from '../../../shared/types/statusLoading';
 
 const initialState: IStateCatalog = {
     products: [],
-    status: 'idle',
+    status: EStatusLoading.idle,
 };
 
 export const getProducts = createAsyncThunk<
@@ -40,30 +41,30 @@ const catalogSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getProducts.pending, (state) => {
-                state.status = 'loading';
+                state.status = EStatusLoading.loading;
             })
             .addCase(
                 getProducts.fulfilled,
                 (state, action: PayloadAction<IProducts[]>) => {
                     state.products = action.payload;
-                    state.status = 'success';
+                    state.status = EStatusLoading.success;
                 },
             )
             .addCase(getProducts.rejected, (state) => {
-                state.status = 'failed';
+                state.status = EStatusLoading.failed;
             })
             .addCase(addProducts.pending, (state) => {
-                state.status = 'loading';
+                state.status = EStatusLoading.loading;
             })
             .addCase(
                 addProducts.fulfilled,
                 (state, action: PayloadAction<IProducts[]>) => {
                     state.products = [...state.products, ...action.payload];
-                    state.status = 'success';
+                    state.status = EStatusLoading.success;
                 },
             )
             .addCase(addProducts.rejected, (state) => {
-                state.status = 'failed';
+                state.status = EStatusLoading.failed;
             });
     },
 });

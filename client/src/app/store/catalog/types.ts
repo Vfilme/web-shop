@@ -1,6 +1,8 @@
+import { TStatusLoading } from '../../../shared/types/statusLoading';
+
 export interface IStateCatalog {
     products: Array<IProducts>;
-    status: string;
+    status: TStatusLoading;
 }
 
 export interface IProducts {
