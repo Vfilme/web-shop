@@ -14,4 +14,12 @@ div.buttonsWrapper {
     span {
         margin: 0 10px;
     }
+    .view-cart {
+        color: black;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+    .active-link {
+        display: none;
+    }
 }

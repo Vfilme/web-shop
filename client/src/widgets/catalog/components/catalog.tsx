@@ -9,6 +9,7 @@ import { CatalogCard } from '../../../entities/catalog-card/components/catalogCa
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
 import { Buttons } from '../../../features/buttons-purchase';
 import { CatalogBoundAsyncActions } from '../../../app/store/actions/catalogAsyncActions';
+import { EStatusLoading } from '../../../shared/types/statusLoading';
 
 export const Catalog: React.FC = () => {
     const [update, setUpdate] = useState<boolean>(true);
@@ -35,10 +36,12 @@ export const Catalog: React.FC = () => {
         setUpdate(true);
     }, [searchParams]);
 
-    const loading = statusProducts == 'loading';
-    const success = statusProducts == 'success' && products.length != 0;
-    const failed = statusProducts == 'failed';
-    const empty = statusProducts == 'success' && products.length == 0;
+    const loading = statusProducts == EStatusLoading.loading;
+    const success =
+        statusProducts == EStatusLoading.success && products.length != 0;
+    const failed = statusProducts == EStatusLoading.failed;
+    const empty =
+        statusProducts == EStatusLoading.success && products.length == 0;
     return (
         <div className={`catalog ${loading && 'loading-cards'}`}>
             <div className="wrapper-products">

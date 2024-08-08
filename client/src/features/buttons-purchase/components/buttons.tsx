@@ -9,6 +9,7 @@ import {
 import { CatalogBoundSyncActions } from '../../../app/store/actions/catalogSyncActions';
 import { isNotNull } from '../../../shared/lib/helpers/IsNotNull';
 import { IBasketCard } from '../../../shared/types/basketCard';
+import { NavLink } from 'react-router-dom';
 
 interface IProps {
     id: number;
@@ -68,6 +69,14 @@ export const Buttons: React.FC<IProps> = ({ id }) => {
                     >
                         +
                     </Button>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive ? 'active-link' : 'view-cart'
+                        }
+                        to="/basket"
+                    >
+                        View Cart
+                    </NavLink>
                 </div>
             )}
         </div>

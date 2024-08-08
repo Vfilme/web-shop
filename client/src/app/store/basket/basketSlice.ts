@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IStateBasket } from './types';
 import { IProductsBasket } from '../../../features/counter-basket-products';
+import {
+    EStatusLoading,
+    TStatusLoading,
+} from '../../../shared/types/statusLoading';
 const initialState: IStateBasket = {
     products: [],
+    status: EStatusLoading.idle,
     listenerUpdateProducts: 0,
 };
 
@@ -19,9 +24,16 @@ const basketSlice = createSlice({
         removeProducts(state) {
             state.products = [];
         },
+        setStatusBasket(state, action: PayloadAction<TStatusLoading>) {
+            state.status = action.payload;
+        },
     },
 });
 
-export const { addProductsBasket, giveSignUpdateProducts, removeProducts } =
-    basketSlice.actions;
+export const {
+    addProductsBasket,
+    giveSignUpdateProducts,
+    removeProducts,
+    setStatusBasket,
+} = basketSlice.actions;
 export default basketSlice.reducer;
