@@ -7,9 +7,11 @@ import { createMassiveFromNumber } from '../../../shared/lib/arrays/arrays';
 import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
 import { getCountProducts } from '../../../shared/api/getCountProducts';
 import { CatalogBoundAsyncActions } from '../../../app/store/actions/catalogAsyncActions';
+import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
 
 export const Pagination: React.FC<IProps> = ({ fun }) => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const products = useTypedSelector((state) => state.catalog.products);
     const pageNumber: string = searchParams.get('page_number') || '1';
     const { getProducts } = CatalogBoundAsyncActions;
     const [countProducts, setCountProducts] = useState<number>(0);

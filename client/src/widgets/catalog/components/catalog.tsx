@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
-import { URLS } from '../../../shared/const/const';
+import { PRODUCTS, URLS } from '../../../shared/const/const';
 import { Pagination } from '../../../features/pagination/components/pagination';
 import { ButtonLoadMore } from '../../../features/button-load-more';
 import './catalog.scss';
@@ -17,7 +17,9 @@ export const Catalog: React.FC = () => {
     const statusProducts = useTypedSelector((state) => state.catalog.status);
     const [status, setStatus] = useState<boolean>(false);
     const { getProducts } = CatalogBoundAsyncActions;
+
     const url = `${URLS.URL_SERVER}products/?${getURLParams(searchParams)}`;
+    console.log(statusProducts);
 
     useEffect(() => {
         if (!status) {
@@ -38,9 +40,9 @@ export const Catalog: React.FC = () => {
     const failed = statusProducts == 'failed';
     const empty = statusProducts == 'success' && products.length == 0;
     return (
-        <div className="catalog">
+        <div className={`catalog ${loading && 'loading-cards'}`}>
             <div className="wrapper-products">
-                {success &&
+                {products &&
                     products.map((el) => {
                         return (
                             <CatalogCard el={el} key={el.id}>
@@ -50,7 +52,6 @@ export const Catalog: React.FC = () => {
                     })}
             </div>
             <div>
-                {loading && <div>The product is being loaded</div>}
                 {failed && (
                     <div>
                         <h2>

@@ -26,8 +26,9 @@ export const CounterBasketProducts: React.FC = () => {
         const products: IBasketCard[] | null = getLSData('basket');
         if (isNotNull(products)) {
             const updateProducts = async () => {
-                const newProducts = await getActualProducts(products);
-                dispatch(addProductsBasket(newProducts));
+                const newProducts: IProductsBasket[] | null =
+                    await getActualProducts(products);
+                if (newProducts) dispatch(addProductsBasket(newProducts));
             };
             updateProducts();
         } else {

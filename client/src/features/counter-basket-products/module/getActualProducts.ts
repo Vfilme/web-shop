@@ -7,17 +7,20 @@ import { IProductsBasket } from '../components/types';
 export const getActualProducts = async (products: IBasketCard[]) => {
     const newProducts: IProductsBasket[] = [];
     const url = `${URLS.URL_SERVER}${URLS.URL_PRODUCTS_ALL}`;
-    const allProducts: IProducts[] = await getServerData(url);
+    const allProducts: IProducts[] | null = await getServerData(url);
 
-    allProducts.forEach((product) => {
-        products.forEach((el) => {
-            if (product.id == el.id) {
-                newProducts.push({
-                    ...product,
-                    count: el.count,
-                });
-            }
+    if (allProducts) {
+        allProducts.forEach((product) => {
+            products.forEach((el) => {
+                if (product.id == el.id) {
+                    newProducts.push({
+                        ...product,
+                        count: el.count,
+                    });
+                }
+            });
         });
-    });
-    return newProducts;
+        return newProducts;
+    }
+    return null;
 };
