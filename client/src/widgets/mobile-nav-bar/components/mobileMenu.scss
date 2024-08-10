@@ -1,0 +1,16 @@
+@use 'src/app/styles/const' as *;
+
+nav.mobile-menu {
+    display: none;
+    position: sticky;
+    z-index: 10;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 15px;
+    justify-content: space-around;
+    background-color: map-get($map: $colors, $key: main-color);
+    @media (max-width: 700px) {
+        display: flex;
+    }
+}

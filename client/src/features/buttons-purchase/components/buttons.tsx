@@ -37,7 +37,7 @@ export const Buttons: React.FC<IProps> = ({ id }) => {
     }, [update]);
 
     return (
-        <div className="buttonsWrapper">
+        <div className="buttons-wrapper">
             {countProduct == 0 ? (
                 <Button
                     onClick={() => {
@@ -49,7 +49,7 @@ export const Buttons: React.FC<IProps> = ({ id }) => {
                     add to bag
                 </Button>
             ) : (
-                <div className="incrementDecrement">
+                <div className="increment-decrement">
                     <Button
                         onClick={() => {
                             setUpdate(!update);

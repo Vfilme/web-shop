@@ -1,17 +1,48 @@
 @use 'src/app/styles/const' as *;
 
-div.side-bar {
-    border: 1px map-get($map: $colors, $key: easy-grey) solid;
-    border-radius: map-get($map: $borders, $key: border-radius);
-    padding: 20px;
-    position: sticky;
-    top: 20px;
-    min-width: 250px;
-    max-width: 300px;
-    div.delete-params {
-        margin: 10px 0;
-        color: grey;
-        user-select: none;
-        cursor: pointer;
+div.container-side-bar {
+    box-sizing: border-box;
+    margin: 0;
+    .hide-filter {
+        font-size: 0.8em;
+        display: none;
+        button {
+            padding: 3px;
+        }
+    }
+    @media (max-width: 700px) {
+        background-color: white;
+        position: absolute;
+        z-index: 2;
+        height: 100%;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow-y: auto;
+        display: none;
+        &.active-filter {
+            display: block;
+        }
+        .hide-filter {
+            display: block;
+        }
+    }
+    div.side-bar {
+        overflow: hidden;
+        padding: 20px;
+        div.delete-params {
+            margin: 10px 0;
+            color: grey;
+            user-select: none;
+            cursor: pointer;
+        }
+        @media (min-width: 700px) {
+            border: 1px map-get($map: $colors, $key: easy-grey) solid;
+            border-radius: map-get($map: $borders, $key: border-radius);
+            position: sticky;
+            top: 20px;
+            min-width: 250px;
+            max-width: 300px;
+        }
     }
 }

@@ -4,10 +4,11 @@ import './informationCard.scss';
 
 interface IProps {
     product: IProducts;
-    children: JSX.Element[];
+    children: React.ReactNode;
 }
 
 export const InformationCard: React.FC<IProps> = ({ product, children }) => {
+    const [buttons, backlink] = React.Children.toArray(children);
     return (
         <div className="wrapper-product">
             <img src={product.images[0]} alt={product.title} />
@@ -16,8 +17,8 @@ export const InformationCard: React.FC<IProps> = ({ product, children }) => {
                 <h4>Category: {product.category.name}</h4>
                 <p>Description: {product.description}</p>
                 <p>${product.price.toFixed(2)}</p>
-                {children[0]}
-                <div className="wrapper-back-link">{children[1]}</div>
+                {buttons}
+                <div className="wrapper-back-link">{backlink}</div>
             </div>
         </div>
     );

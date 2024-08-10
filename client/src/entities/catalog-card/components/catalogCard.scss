@@ -12,6 +12,7 @@ div.catalog-card {
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
+    font-size: 1em;
 
     a {
         color: black;
@@ -28,5 +29,14 @@ div.catalog-card {
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: 80px repeat(3, 50px);
+    }
+    @media (max-width: 1600px) {
+        font-size: 0.9em;
+    }
+    @media (max-width: 1200px) {
+        font-size: 0.8em;
+    }
+    @media (max-width: 800px) {
+        font-size: 1em;
     }
 }

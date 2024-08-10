@@ -2,8 +2,11 @@
 
 div.catalog {
     background-size: cover;
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
+    .show-filter {
+        display: none;
+    }
     &.loading-cards::before {
         content: '';
         position: absolute;
@@ -49,6 +52,24 @@ div.catalog {
             .pagination {
                 justify-self: right;
                 grid-column: 2;
+                margin: 0;
+            }
+            @media (max-width: 700px) {
+                box-sizing: border-box;
+            }
+        }
+    }
+    @media (max-width: 700px) {
+        margin: 0 10px;
+        .show-filter {
+            all: unset;
+            display: flex;
+            margin: 10px 10px 10px auto;
+            img {
+                display: block;
+                margin: auto;
+                width: 30px;
+                height: 30px;
             }
         }
     }

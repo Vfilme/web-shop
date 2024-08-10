@@ -1,5 +1,16 @@
+@use 'src/app/styles/const' as *;
+
 footer {
-    color: grey;
+    color: rgb(232, 232, 232);
     text-align: center;
-    margin: 20px;
+    padding: 20px;
+    background-color: map-get($map: $colors, $key: main-color);
+    border-top: 30px white double;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    p {
+        flex: 1;
+    }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './userNav.scss';
-// import { CountProductsBasket } from './countProductsBasket/CountProductsBasket';
 import '../assets/images/search.png';
 import '../assets/images/user.png';
 import '../assets/images/basket.png';
@@ -13,7 +12,20 @@ interface IUserNavProps {
 export const UserNav: React.FC<IUserNavProps> = ({ children }) => {
     return (
         <>
-            <ul className="user-nav">
+            <Link to="/user">
+                <img src="/images/user.png" alt="аккаунт" />
+            </Link>
+
+            <Link to="/search">
+                <img src="/images/search.png" alt="поиск" />
+            </Link>
+
+            <Link to="/basket">
+                <img src="/images/basket.png" alt="корзина" />
+                {children}
+            </Link>
+
+            {/* <ul className="user-nav">
                 <li>
                     <Link to="/user">
                         <img src="/images/user.png" alt="аккаунт" />
@@ -31,7 +43,7 @@ export const UserNav: React.FC<IUserNavProps> = ({ children }) => {
                         {children}
                     </Link>
                 </li>
-            </ul>
+            </ul> */}
         </>
     );
 };

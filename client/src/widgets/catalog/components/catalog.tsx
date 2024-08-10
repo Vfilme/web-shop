@@ -10,6 +10,8 @@ import { getURLParams } from '../../../shared/lib/helpers/getURLParams';
 import { Buttons } from '../../../features/buttons-purchase';
 import { CatalogBoundAsyncActions } from '../../../app/store/actions/catalogAsyncActions';
 import { EStatusLoading } from '../../../shared/types/statusLoading';
+import { useDispatch } from 'react-redux';
+import { setStatusFilter } from '../../../app/store/filter/filterSlice';
 
 export const Catalog: React.FC = () => {
     const [update, setUpdate] = useState<boolean>(true);
@@ -18,6 +20,7 @@ export const Catalog: React.FC = () => {
     const statusProducts = useTypedSelector((state) => state.catalog.status);
     const [status, setStatus] = useState<boolean>(false);
     const { getProducts } = CatalogBoundAsyncActions;
+    const dispatch = useDispatch();
 
     const url = `${URLS.URL_SERVER}products/?${getURLParams(searchParams)}`;
     console.log(statusProducts);
@@ -37,13 +40,22 @@ export const Catalog: React.FC = () => {
     }, [searchParams]);
 
     const loading = statusProducts == EStatusLoading.loading;
-    const success =
-        statusProducts == EStatusLoading.success && products.length != 0;
     const failed = statusProducts == EStatusLoading.failed;
     const empty =
         statusProducts == EStatusLoading.success && products.length == 0;
     return (
-        <div className={`catalog ${loading && 'loading-cards'}`}>
+        <div className={`catalog ${loading ? 'loading-cards' : ''}`}>
+            <button
+                className="show-filter"
+                onClick={() => {
+                    dispatch(setStatusFilter(true));
+                }}
+            >
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/2860/2860208.png"
+                    alt="show filter"
+                />
+            </button>
             <div className="wrapper-products">
                 {products &&
                     products.map((el) => {

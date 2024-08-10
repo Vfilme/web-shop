@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 export const theme = createTheme({
     palette: {
         primary: {
-            main: '#8A2BE2', // Пример основного цвета
+            main: '#000', // Пример основного цвета
         },
     },
 });
@@ -17,7 +17,7 @@ export const CustomSlider = styled(Slider)(({ theme }) => ({
         height: 16, // Высота "ручки" ползунков
         width: 16, // Ширина "ручки" ползунков
         backgroundColor: 'white', // Цвет "ручки" ползунков
-        border: '2px solid blueviolet', // Обводка "ручки" ползунков
+        border: '2px solid #000', // Обводка "ручки" ползунков
         marginTop: 0, // Смещение "ручки" ползунков
         marginLeft: 0, // Смещение "ручки" ползунков
         '&:hover, &.Mui-focusVisible': {

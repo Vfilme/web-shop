@@ -3,6 +3,8 @@ import './footer.scss';
 
 export const Footer: React.FC = () => {
     return (
-        <footer>© 2024 Роман Николаевич Дубинин. Все права защищены.</footer>
+        <footer>
+            <p>© 2024 Роман Николаевич Дубинин. Все права защищены.</p>
+        </footer>
     );
 };

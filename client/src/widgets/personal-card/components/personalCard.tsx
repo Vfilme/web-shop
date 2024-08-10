@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { IProducts } from '../../../app/store/catalog/types';
 import { URLS } from '../../../shared/const/const';
 import { getServerData } from '../../../shared/api/getServerData';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './personalCard.scss';
 import { InformationCard } from '../../../entities/information-card';
 import { BackLink } from '../../../entities/back-link/components/backLink';
 import { Buttons } from '../../../features/buttons-purchase';
 import { EStatusLoading } from '../../../shared/types/statusLoading';
-import { Button } from '../../../shared/ui/button/Button';
 
 export const PersonalCard: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();
@@ -39,10 +38,10 @@ export const PersonalCard: React.FC = () => {
         <>
             {success && (
                 <InformationCard product={product}>
-                    {[
-                        <Buttons id={product.id} key={0} />,
-                        <BackLink key={1} />,
-                    ]}
+                    <>
+                        <Buttons id={product.id} />
+                        <BackLink />
+                    </>
                 </InformationCard>
             )}
             {statusProduct == EStatusLoading.loading && (

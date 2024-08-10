@@ -10,7 +10,7 @@ const CardBasket: React.FC<ICardBasket> = ({ ...product }) => {
             <Link to={`/product/${product.id}`} className="image-card">
                 <img src={product.image} alt={product.title} />
             </Link>
-            <div>
+            <div className="description">
                 <Link to={`/product/${product.id}`} className="image-card">
                     <h2>{product.title}</h2>
                 </Link>

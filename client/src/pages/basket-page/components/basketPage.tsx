@@ -10,6 +10,8 @@ export const BasketPage: React.FC = () => {
     const products = useTypedSelector((state) => state.basket.products);
     const status = useTypedSelector((state) => state.basket.status);
 
+    const empty = status == EStatusLoading.success && products.length == 0;
+    const loading = status == EStatusLoading.loading && products.length == 0;
     return (
         <div className="page-basket">
             <h1>Basket</h1>
@@ -20,12 +22,8 @@ export const BasketPage: React.FC = () => {
                     <TotalBox />
                 </div>
             )}
-            {status == EStatusLoading.success && products.length == 0 && (
-                <EmptyBasket />
-            )}
-            {status == EStatusLoading.loading && products.length == 0 && (
-                <div>loading products...</div>
-            )}
+            {empty && <EmptyBasket />}
+            {loading && <div>loading products...</div>}
         </div>
     );
 };
