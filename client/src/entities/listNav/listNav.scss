@@ -1,3 +1,5 @@
+@use 'src/app/styles/const' as *;
+
 ul.list-nav {
     user-select: none;
     color: white;
@@ -12,7 +14,7 @@ ul.list-nav {
         ul {
             display: none;
             padding: 0;
-            background-color: blueviolet;
+            background-color: map-get($map: $colors, $key: main-color);
             position: absolute;
             li {
                 display: block;

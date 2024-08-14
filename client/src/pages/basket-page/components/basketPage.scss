@@ -4,7 +4,9 @@ div {
     &.page-basket {
         padding: 20px;
         max-width: 1400px;
-        margin: auto;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0 auto auto auto;
         @media (max-width: 700px) {
             margin: 0;
         }

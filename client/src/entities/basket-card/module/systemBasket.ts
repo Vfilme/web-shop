@@ -48,6 +48,16 @@ export const removeProductSystem: (id: number) => void = (id) => {
     }
 };
 
+export const deleteProduct = (id: number) => {
+    const products: IBasketCard[] | null = getLSData('basket');
+
+    if (isNotNull(products)) {
+        const newProducts = removeElementFromArrayById(products, id);
+        setLSData('basket', newProducts);
+        if (newProducts.length == 0) localStorage.removeItem('basket');
+    }
+};
+
 export const cleanBasket: () => void = () => {
     localStorage.removeItem('basket');
 };

@@ -4,6 +4,7 @@ import { Layout } from '../layout';
 import { CatalogPage } from '../../pages/catalog-page';
 import { ProductPage } from '../../pages/product-page';
 import { BasketPage } from '../../pages/basket-page';
+import { AboutPage } from '../../pages/aboutPage';
 
 export const AppRouter = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ export const AppRouter = createBrowserRouter([
             {
                 path: '/basket',
                 element: <BasketPage />,
+            },
+            {
+                path: '/about',
+                element: <AboutPage />,
             },
             {
                 path: '/product/:productId',

@@ -13,9 +13,10 @@ import { NavLink } from 'react-router-dom';
 
 interface IProps {
     id: number;
+    count?: number;
 }
 
-export const Buttons: React.FC<IProps> = ({ id }) => {
+export const Buttons: React.FC<IProps> = ({ id, count }) => {
     const [countProduct, setCountProduct] = useState<number>(0);
     const [update, setUpdate] = useState<boolean>(false);
     const { giveSignUpdateProducts } = CatalogBoundSyncActions;
@@ -52,9 +53,11 @@ export const Buttons: React.FC<IProps> = ({ id }) => {
                 <div className="increment-decrement">
                     <Button
                         onClick={() => {
-                            setUpdate(!update);
-                            removeProductSystem(id);
-                            giveSignUpdateProducts();
+                            if (count == null || count > 1) {
+                                setUpdate(!update);
+                                removeProductSystem(id);
+                                giveSignUpdateProducts();
+                            }
                         }}
                     >
                         -

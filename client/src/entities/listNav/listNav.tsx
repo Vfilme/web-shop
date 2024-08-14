@@ -10,30 +10,19 @@ export const ListNav: React.FC = () => {
                     <NavLink to={'/'}>Catalog</NavLink>
                 </li>
                 <li>
-                    About
-                    <ul>
-                        <li>
-                            <NavLink to="/product4">product1</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/product5">product1</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/product6">product1</NavLink>
-                        </li>
-                    </ul>
+                    <NavLink to={'/about'}>About</NavLink>
                 </li>
                 <li>
-                    Something
+                    Something else
                     <ul>
                         <li>
-                            <NavLink to="/product7">product1</NavLink>
+                            <NavLink to="">something</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/product8">product1</NavLink>
+                            <NavLink to="">something</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/product8">product1</NavLink>
+                            <NavLink to="">something</NavLink>
                         </li>
                     </ul>
                 </li>

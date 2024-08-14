@@ -6,59 +6,60 @@ $border-radius: map-get(
 );
 
 div.card-basket {
+    width: 100%;
     display: grid;
-    gap: 20px;
+    // gap: 20px;
     box-sizing: border-box;
 
     background-color: map-get($map: $colors, $key: background-card);
     border: 1px solid map-get($map: $colors, $key: easy-grey);
     border-radius: map-get($map: $borders, $key: border-radius);
 
-    grid-template-columns: 1fr 3fr 3fr;
+    grid-template-columns: auto 3fr;
     a {
         text-decoration: none;
         color: black;
     }
     img {
-        width: 200px;
+        max-width: 280px;
+        width: 100%;
         border-radius: $border-radius 0 0 $border-radius;
         display: block;
     }
-    div.cash-result {
+    div.container-control {
         display: grid;
-        grid-template-columns: auto auto;
-        justify-content: space-around;
-        align-items: center;
-    }
-    @media (max-width: 700px) and (min-width: 500px) {
-        font-size: 0.8em;
-        gap: 0;
-        grid-template-columns: 5fr 6fr;
-        .description {
-            padding-left: 10px;
+        grid-template-columns: 2fr 1fr;
+        padding: 20px;
+        h2 {
+            margin-top: 0;
         }
-        div.cash-result {
-            padding: 0 10px;
-            justify-content: space-between;
+        .product-price,
+        .product-delete {
+            justify-self: right;
         }
-        a.image-card {
-            grid-row-start: 1;
-            grid-row-end: 3;
+        .product-delete,
+        .product-controler {
+            align-self: flex-end;
         }
-    }
-    @media (max-width: 500px) {
-        gap: 0;
-        grid-template-columns: auto;
-        grid-template-rows: 1fr auto auto;
-        img {
-            width: 100%;
-            border-radius: $border-radius $border-radius 0 0;
-        }
-        > div {
-            padding: 10px;
-            &.cash-result {
-                justify-content: space-between;
+        .product-delete {
+            button {
+                all: unset;
+                img {
+                    max-width: 25px;
+                    width: 100%;
+                }
             }
         }
+    }
+    @media (max-width: 600px) {
+        img {
+            max-width: 600px;
+            border-radius: $border-radius $border-radius 0 0;
+        }
+    }
+}
+@media (max-width: 600px) {
+    div.card-basket {
+        grid-template-columns: auto;
     }
 }
