@@ -7,6 +7,7 @@ import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { setStatusFilter } from '../../../app/store/filter/filterSlice';
 import { Button } from '../../../shared/ui/button/Button';
+import { CustomerParams } from '../../../features/customer-params/components/customerParams';
 
 export const SideBar: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -35,16 +36,18 @@ export const SideBar: React.FC = () => {
                         hide filter
                     </Button>
                 </div>
-
                 {searchParams.toString() && (
-                    <div
-                        className="delete-params"
-                        onClick={() => {
-                            setSearchParams();
-                        }}
-                    >
-                        reset everything
-                    </div>
+                    <>
+                        <div
+                            className="delete-params"
+                            onClick={() => {
+                                setSearchParams();
+                            }}
+                        >
+                            reset everything
+                        </div>
+                        <CustomerParams />
+                    </>
                 )}
                 <PriceRange />
                 <CategoryRange />

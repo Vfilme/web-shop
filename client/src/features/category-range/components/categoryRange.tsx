@@ -41,28 +41,12 @@ export const CategoryRange: React.FC = () => {
                                         );
                                     }}
                                 />
-                                {el}
+                                <label htmlFor="myCheckbox">{el}</label>
                             </li>
                         );
                     })
                 ) : (
-                    <>
-                        <li>
-                            <Skeleton />
-                        </li>
-                        <li>
-                            <Skeleton />
-                        </li>
-                        <li>
-                            <Skeleton />
-                        </li>
-                        <li>
-                            <Skeleton />
-                        </li>
-                        <li>
-                            <Skeleton />
-                        </li>
-                    </>
+                    <Skeleton className="category-skeleton" count={5} />
                 )}
             </ul>
         </div>

@@ -1,18 +1,48 @@
 @use 'src/app/styles/const' as *;
 div.category-range {
     ul {
+        width: 100%;
+    }
+    li {
+        width: 100%;
+    }
+    ul {
         list-style: none;
         padding: 0;
         li {
             user-select: none;
             margin: 0 0 5px 0;
+            display: grid;
+            grid-template-columns: auto auto;
+            justify-content: flex-start;
+            gap: 2px;
         }
     }
     input[type='checkbox'] {
-        position: relative;
-        top: 4px;
-        margin: 0 5px 0 0;
-        width: 18px;
-        height: 18px;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px map-get($map: $colors, $key: easy-grey) solid;
+        display: grid;
+        place-content: center;
+    }
+    input[type='checkbox']::before {
+        content: '';
+        width: 0.8em;
+        height: 0.8em;
+        transform: scale(0);
+        transition: 0.05s transform ease-in-out;
+        box-shadow: inset 1em 1em black;
+    }
+    input[type='checkbox']:checked::before {
+        transform: scale(1);
+    }
+    label {
+        display: grid;
+        align-items: center;
+    }
+    .category-skeleton {
+        height: 26px;
+        margin: 5px 0;
     }
 }

@@ -1,0 +1,24 @@
+@use 'src/app/styles/const' as *;
+
+div.customer-params {
+    div.container-params {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        button {
+            user-select: none;
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+            gap: 3px;
+            background-color: map-get($map: $colors, $key: easy-grey);
+            font-size: 0.8em;
+            padding: 3px;
+            border: 1px map-get($map: $colors, $key: easy-grey) solid;
+            border-radius: map-get($map: $borders, $key: border-radius);
+            img {
+                width: 8px;
+            }
+        }
+    }
+}

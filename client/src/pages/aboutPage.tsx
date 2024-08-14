@@ -21,6 +21,8 @@ export const AboutPage: React.FC = () => {
                 More infromation: in this project i try use architectural
                 methodology Feature-Sliced Design
             </p>
+            <p>All products in basket contain localStorage</p>
+            <p>Your actual number page contain url search params</p>
         </>
     );
 };

@@ -8,7 +8,6 @@ $border-radius: map-get(
 div.card-basket {
     width: 100%;
     display: grid;
-    // gap: 20px;
     box-sizing: border-box;
 
     background-color: map-get($map: $colors, $key: background-card);

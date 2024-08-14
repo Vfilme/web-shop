@@ -23,7 +23,6 @@ export const Catalog: React.FC = () => {
     const dispatch = useDispatch();
 
     const url = `${URLS.URL_SERVER}products/?${getURLParams(searchParams)}`;
-    console.log(statusProducts);
 
     useEffect(() => {
         if (!status) {
