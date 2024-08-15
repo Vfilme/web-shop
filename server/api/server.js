@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
 const PORT = process.env.PORT || 4000;
 const {
     getProducts,
@@ -10,10 +12,9 @@ const {
     usePriceRange,
     useCategoriesRange,
 } = require('../scripts');
-const cors = require('cors');
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 const products = getProducts();
 
@@ -70,5 +71,3 @@ app.get('/products/categories', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Сервер запущен на http://localhost:${PORT} `);
 });
-
-module.exports = app;
