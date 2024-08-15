@@ -9,7 +9,7 @@ const {
     getPageProducts,
     usePriceRange,
     useCategoriesRange,
-} = require('./scripts');
+} = require('../scripts');
 const cors = require('cors');
 
 app.use(cors());
@@ -70,3 +70,5 @@ app.get('/products/categories', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Сервер запущен на http://localhost:${PORT} `);
 });
+
+module.exports = app;
