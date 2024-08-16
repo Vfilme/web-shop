@@ -8,8 +8,10 @@ export enum PRODUCTS {
     PAGE_SIZE = 8,
 }
 
+//https://web-shop-server-7vmnuf487-romans-projects-45779c02.vercel.app/
+// http://localhost:4000/
 export enum URLS {
-    URL_SERVER = 'https://web-shop-server-7vmnuf487-romans-projects-45779c02.vercel.app/',
+    URL_SERVER = 'https://web-shop-client-six.vercel.app/',
     URL_PRODUCT = 'product/',
     URL_PRODUCTS = 'products/',
     URL_PRODUCTS_PRICE_RANGE = 'products/price-range/',

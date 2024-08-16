@@ -2,6 +2,24 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+const corsOptions = {
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.options('*', cors(corsOptions));
+
+app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
+
 const PORT = process.env.PORT || 4000;
 const {
     getProducts,
@@ -14,7 +32,6 @@ const {
 } = require('../scripts');
 
 app.use(express.json());
-app.use(cors());
 
 const products = getProducts();
 

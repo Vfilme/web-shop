@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedSelector } from '../../../app/store/hooks/useTypedSelector';
-import { PRODUCTS, URLS } from '../../../shared/const/const';
+import { URLS } from '../../../shared/const/const';
 import { Pagination } from '../../../features/pagination/components/pagination';
 import { ButtonLoadMore } from '../../../features/button-load-more';
 import './catalog.scss';

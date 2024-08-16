@@ -1,0 +1,26 @@
+@use 'src/app/styles/const' as *;
+
+h1 {
+    text-align: center;
+}
+div.container-stacks {
+    font-size: 1.1em;
+    display: grid;
+    gap: 20px;
+    margin: 20px;
+    div {
+        background-color: map-get($map: $colors, $key: background-card);
+        box-sizing: border-box;
+        padding: 20px;
+        &.stack {
+            border: 10px map-get($map: $colors, $key: easy-grey) dashed;
+        }
+    }
+    @media (min-width: 700px) {
+        justify-content: center;
+        div.deployment {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+    }
+}
